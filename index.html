@@ -10,63 +10,30 @@
 <title>地理院地図</title>
 <script src="http://cyberjapandata.gsi.go.jp/portal/sys/OpenLayers-2.13.1/OpenLayers.js"></script>
 <script src="http://cyberjapandata.gsi.go.jp/portal/site/mapuse4/js/mapuse4.js"></script>
-		<script type="text/javascript" src="http://cyberjapandata.gsi.go.jp/portal/site/mapuse4/js/jquery.dynatree.min.js" charset="UTF-8"></script>
-
-		<link rel="stylesheet"
-			href="http://portal.cyberjapan.jp/shared/palette/css/reset.css"
-			type="text/css" media="screen"></link>
-		<link rel="stylesheet"
-			href="http://portal.cyberjapan.jp/shared/palette/css/ui-lightness/jquery-ui-1.8.16.custom.css"
-			type="text/css" media="screen"></link>
-		<link rel="stylesheet"
-			href="http://portal.cyberjapan.jp/shared/palette/css/sakuzu.css"
-			type="text/css" media="screen"></link>
-		<link rel="stylesheet" href="http://portal.cyberjapan.jp/site/mapuse4/css/cs.css" type="text/css"
-			media="screen" charset="utf-8"></link>
-		<link rel="stylesheet" href="http://portal.cyberjapan.jp/site/mapuse4/css/webtis.css" type="text/css"></link>
-		<link rel="stylesheet" href="http://portal.cyberjapan.jp/site/mapuse4/css/TabbedPanels.css" type="text/css"></link>
-		<link rel="stylesheet" href="http://portal.cyberjapan.jp/site/mapuse4/css/transparentslider.css"
-			type="text/css"></link>
-		<link rel="stylesheet" href="http://portal.cyberjapan.jp/site/mapuse4/css/scalebar.css" type="text/css"></link>
-		<link rel="stylesheet" href="http://portal.cyberjapan.jp/site/mapuse4/css/accordion.css" type="text/css"></link>
-		<link rel="stylesheet" href="http://portal.cyberjapan.jp/site/mapuse4/css/ui-tab.css" type="text/css" />
-		<link rel="stylesheet" href="http://portal.cyberjapan.jp/site/mapuse4/css/skin/ui.dynatree.css"
-			type="text/css" />
-		<link rel="stylesheet" href="http://portal.cyberjapan.jp/site/mapuse4/css/sliderctrl.css" type="text/css" />
-		<link rel="stylesheet" href="http://portal.cyberjapan.jp/site/mapuse4/css/GisOverviewMap.css" type="text/css" />
-		<link rel="stylesheet" href="http://portal.cyberjapan.jp/site/mapuse4/css/sakuzu.css" type="text/css" />
-		<link rel="stylesheet" href="http://portal.cyberjapan.jp/site/mapuse4/css/treectrl.css" type="text/css" />
-
-		<style type="text/css">
-#Left {
-	border-right: 1px solid #000;
-}
-
-#header {
-	border-bottom: 1px solid #000;
-}
-
-td {
-	font-size: 9pt;
-}
-
-body {
-	overflow: hidden;
-}
-
-<!--
-地図拡大表示ボタンにマウスオーバーしてもデフォルトのまま-->a.fullscreen {
-	cursor: default;
-}
-
-a.fullscreen:hover {
-	cursor: default;
-}
-
-#pointerlink:hover {
-	cursor: pointer;
-}
-
+<script src="http://cyberjapandata.gsi.go.jp/portal/site/mapuse4/js/jquery.dynatree.min.js"></script>
+<link rel="stylesheet" href="http://portal.cyberjapan.jp/shared/palette/css/reset.css"/>
+<link rel="stylesheet" href="http://portal.cyberjapan.jp/shared/palette/css/ui-lightness/jquery-ui-1.8.16.custom.css"/>
+<link rel="stylesheet" href="http://portal.cyberjapan.jp/shared/palette/css/sakuzu.css"/>
+<link rel="stylesheet" href="http://portal.cyberjapan.jp/site/mapuse4/css/cs.css"/>
+<link rel="stylesheet" href="http://portal.cyberjapan.jp/site/mapuse4/css/webtis.css"/>
+<link rel="stylesheet" href="http://portal.cyberjapan.jp/site/mapuse4/css/TabbedPanels.css"/>
+<link rel="stylesheet" href="http://portal.cyberjapan.jp/site/mapuse4/css/transparentslider.css"/>
+<link rel="stylesheet" href="http://portal.cyberjapan.jp/site/mapuse4/css/scalebar.css"/>
+<link rel="stylesheet" href="http://portal.cyberjapan.jp/site/mapuse4/css/accordion.css"/>
+<link rel="stylesheet" href="http://portal.cyberjapan.jp/site/mapuse4/css/ui-tab.css"/>
+<link rel="stylesheet" href="http://portal.cyberjapan.jp/site/mapuse4/css/skin/ui.dynatree.css"/>
+<link rel="stylesheet" href="http://portal.cyberjapan.jp/site/mapuse4/css/sliderctrl.css"/>
+<link rel="stylesheet" href="http://portal.cyberjapan.jp/site/mapuse4/css/GisOverviewMap.css"/>
+<link rel="stylesheet" href="http://portal.cyberjapan.jp/site/mapuse4/css/sakuzu.css"/>
+<link rel="stylesheet" href="http://portal.cyberjapan.jp/site/mapuse4/css/treectrl.css"/>
+<style type="text/css">
+#Left {border-right: 1px solid #000;}
+#header {border-bottom: 1px solid #000;}
+td {font-size: 9pt;}
+body {overflow: hidden;}
+a.fullscreen {cursor: default;}
+a.fullscreen:hover {cursor: default;}
+#pointerlink:hover {cursor: pointer;}
 .hokachizu {
 	background-color: #55ccee;
 	font-size: 14px;
@@ -75,13 +42,11 @@ a.fullscreen:hover {
 	padding-left: 12px;
 	padding-top: 1px;
 }
-
 .hokachizu a {
 	color: #fff;
 	font-weight: bold;
 	text-decoration: none;
 }
-
 .sizemenu {
 	width: 50px;
 	padding: 3px 0px 2px 5px;
@@ -91,33 +56,27 @@ a.fullscreen:hover {
 	border-bottom: 1px solid maroon;
 	border-left: 1px solid #ffeeee;
 }
-
 .selmaptitle {
 	color: #000000;
 	font-size: 14px;
 	margin-bottom: 2px;
 	font-weight: bold;
 }
-
 a.sel {
 	text-decoration: none;
 	color: #000000;
 	cursor: default;
 }
-
 a:hover.sel {
 	text-decoration: none;
 	color: #000000;
 }
-
 .default_text {
 	color: #cccccc;
 }
 
 @media print {
-	.insatu {
-		display: none;
-	}
+	.insatu {display: none;}
 }
 
 .sz_size_selecter {
@@ -128,23 +87,19 @@ a:hover.sel {
 	width: 40px;
 	height: 40px;
 }
-
 .sz_size_list {
 	vertical-align: middle;
 	cursor: pointer;
 	text-align: left;
 }
-
 .sz_size_list:hover {
 	background-color: #CAFFFF;
 }
-
 .sz_line_width {
 	vertical-align: middle;
 	cursor: pointer;
 	text-align: center;
 }
-
 #popup_clipboard {
 	background-color: #ffeedd;
 	width: 273px;
@@ -154,17 +109,13 @@ a:hover.sel {
 	border-bottom: 1px solid maroon;
 	border-left: 1px solid #ffeeee;
 }
-
 #popup_clipboard:hover,#popup_clipboard.hover {
 	background-color: #ffaa99;
 }
-
-<!--
-プルダウンメニュー -->.configMenu {
+.configMenu {
 	font-size: 14px;
 	top: 50px;
 }
-
 .configMenuItem {
 	padding: 3px 0px 2px 5px;
 	background-color: #FFFFFF;
@@ -176,11 +127,9 @@ a:hover.sel {
 	color: rgb(51, 51, 255);
 	cursor: pointer;
 }
-
 .configMenuItem:hover {
 	background-color: #FFFFC2;
 }
-
 .configMenuTitle {
 	padding: 3px 0px 2px 5px;
 	background-color: rgb(51, 51, 255);
@@ -203,9 +152,7 @@ a:hover.sel {
 }
 </style>
 
-<script type="text/javascript">
-<!--
-
+<script type="text/javascript"><!--
 var userAgent = window.navigator.userAgent.toLowerCase();
 var isTab = false;
 var isMob = false;
@@ -215,20 +162,10 @@ if((navigator.userAgent.indexOf('Android') > 0 && navigator.userAgent.indexOf('M
 	isMob = true;
 }
 var isNoMT = false;
-
-/* proj4jsで使用する投影法の定義ここから（楕円体等の定義はproj4jsの中で定義） */
 var projLonLat = new Proj4js.Proj('EPSG:4326');
 var projUTM = null;
-
-
-//		3875 ⇒　3857　変更
 var projMerc = new Proj4js.Proj('EPSG:3857');
-/* proj4jsで使用する投影法の定義ここまで */
-
-/* コントロールの定義ここから */
-// 地図拡大表示後に元に戻すコントロールを定義
 webtis.Control.ShrinkMap = OpenLayers.Class(OpenLayers.Control, {
-
 	createCtrlImage: function(url, left, handler) {
 		var	image = document.createElement('img');
 		image.src = url;
@@ -239,7 +176,6 @@ webtis.Control.ShrinkMap = OpenLayers.Class(OpenLayers.Control, {
 		image.title = '元に戻す';
 		image.alt = '元に戻す';
 		if (handler) {
-			// only handle click
 			OpenLayers.Event.observe(image, "mousedown",
 				OpenLayers.Function.bindAsEventListener(function(e) {
 					OpenLayers.Event.stop(e);
@@ -255,7 +191,6 @@ webtis.Control.ShrinkMap = OpenLayers.Class(OpenLayers.Control, {
 		}
 		this.div.appendChild(image);
 	},
-
 	draw: function (px) {
 		if (this.div == null) {
 			var mapSize = this.map.getSize();
@@ -284,16 +219,13 @@ webtis.Control.ShrinkMap = OpenLayers.Class(OpenLayers.Control, {
 	CLASS_NAME: "webtis.Control.ShrinkMap"
 });
 
-// 中央の十字のクラスを設定
 OpenLayers.Control.Crosshairs = OpenLayers.Class(OpenLayers.Control, {
 	imgUrl: null,
 	size: null,
 	position: null,
-
 	initialize: function(options) {
 		OpenLayers.Control.prototype.initialize.apply(this, arguments);
 	},
-
 	draw: function() {
 		OpenLayers.Control.prototype.draw.apply(this, arguments);
 		var px = this.position.clone();
@@ -307,7 +239,6 @@ OpenLayers.Control.Crosshairs = OpenLayers.Class(OpenLayers.Control, {
 				"absolute");
 		return this.div;
 	},
-
 	setPosition: function(position) {
 		this.position = position;
 		var px = this.position.clone();
@@ -315,12 +246,10 @@ OpenLayers.Control.Crosshairs = OpenLayers.Class(OpenLayers.Control, {
 		this.div.style.left = centered.x + "px";
 		this.div.style.top = centered.y + "px";
 	},
-
 	CLASS_NAME: "OpenLayers.Control.Crosshairs"
 });
 
 webtis.Control.CloseButton = OpenLayers.Class(OpenLayers.Control, {
-
 	createCtrlImage: function(url, left, handler) {
 		var	image = document.createElement('img');
 		image.src = url;
@@ -378,7 +307,6 @@ webtis.Control.CloseButton = OpenLayers.Class(OpenLayers.Control, {
 	CLASS_NAME: "webtis.Control.CloseButton"
 });
 
-// 計測ボタンを定義
 webtis.Control.keisoku = OpenLayers.Class(OpenLayers.Control, {
 
 	createCtrlImage: function(url, left, handler) {
@@ -392,7 +320,6 @@ webtis.Control.keisoku = OpenLayers.Class(OpenLayers.Control, {
 		image.style.width = '31px';
 		image.style.height = '31px';
 		if (handler) {
-			// only handle mousedown
 			OpenLayers.Event.observe(image, "mousedown",
 				OpenLayers.Function.bindAsEventListener(function(e) {
 					OpenLayers.Event.stop(e);
@@ -437,7 +364,6 @@ webtis.Control.keisoku = OpenLayers.Class(OpenLayers.Control, {
 	CLASS_NAME: "webtis.Control.keisoku"
 });
 
-//「電子国土」のロゴ
 webtis.Control.djplogo = OpenLayers.Class(OpenLayers.Control, {
 
 	createCtrlImage: function(url, left, handler) {
@@ -495,165 +421,59 @@ webtis.Control.djplogo = OpenLayers.Class(OpenLayers.Control, {
 	CLASS_NAME: "webtis.Control.djplogo"
 });
 
-/*コントロールの定義ここまで*/
-
-/*グローバル変数定義*/
-//URLで指定されたファイル名を取得
 var htmlName = document.location.href;
-
-//URLを「?」で分割、URL発行に使用する
 var hikisu_all = htmlName.split("?");
-
-//さらに上を「/」で分割、印刷用のURL発行にしよう
 var hikisu_separate = hikisu_all[0].split("/");
-
-//地図インスタンス
 var map = null;
-
-/*地図用キーボード*/
 var KeyboardDefaultsControl = null;
-
-/*地図用マウス制御*/
 var mapoClick = null;
-
-//初期の経度
 var initCX = 0;
-
-//初期の緯度
 var initCY = 0;
-
-//フルスクリーン状態(リサイズ時の挙動を地図拡大表示時に変更するため)
 var fullscreenMode = false;
-
-//パンズームバーコントロールのインスタンス(地図拡大表示時に消すため)
 var zoomcontrol = null;
-
-//縮小コントロールのインスタンス(地図拡大表示時に左上に表示される元に戻すボタン)
 var shrinkcontrol = null;
-
-//×マーク表示フラグ
 var clickmarkflg = 0;
-
-//マーカーのインスタンス
 var marker;
-
-//マーカー表示のフラグ(マーカー初期表示のときだけ0、2回目以降1)
 var flagmarker = 0;
-
-//地図の種類(URL用)
 var dataId = null;
-
-//検索文字列(URL用)
 var keyword = "";
-
-//検索実行要否(URL用)
 var execsearch = "";
-
-//マーカー表示要否(URL用)
 var setmarker = "";
-
-//KMLファイル名(URL用)
 var kmlid = "";
-
-//中心経緯度表示が六十進数であるときのflag
 var dmsflag = 0;
-
-/*グローバル変数定義ここまで*/
-//初期のズームレベル
-//※ここで設定するズームレベルはデータセットの最小ズームレベルが0になる
-//※デフォルトデータセットでは「ズームレベル0」が0になる
 var initZoomLv = 5;
-
-//ズームレベル18のフラグ（グローバル変数）
 var gZ18Flag = initZoomLv==18 ? true : false ;
 var curZoom = -1;
-
-//よく使う真球メルカトル投影(電子国土WebシステムVer.4もこれに準拠)を定義
 var projection900913 = new OpenLayers.Projection("EPSG:900913");
-
-//よく使う等経緯度投影を定義
 var projection4326 = new OpenLayers.Projection("EPSG:4326");
-
-// ポップアップ表示切替用のフラグ
 var dispFlg = true;
-
-//作図インスタンス
 var sakuzuModule = null;
-
-// 作図レイヤーの透過スライダー
 var sakuzuSlider = null;
-
-//計測
 var measureControls;
-
-//計測ボタンインスタンス
 var keisokuControl;
-
-//上載せlonlatグリッドレイヤフラグ
 var lonlatgv = 0;
-
-//「電子国土」ロゴインスタンス
 var djplogoControl;
-
-//検索パネルインスタンス
 var csModule = null;
-
-//レイヤ表示パネルインスタンス
 var layerModule = null;
-
-// ツリーインスタンス
 var treeModule = null;
-
-// 透過スライダーインスタンス
 var sliderModule = null;
-
 var pluginModule = [];
 var pluginSliderModule = [];
-
-// "ライブラリー"ツリーの初期表示設定
 var initialLibLayers = [];
-
-// フルスクリーン
 var isFullscreen = false;
-
-//広域地図インスタンス
 var overViewControl;
-
-// 閉じるボタン
 var hasCloseButton = false;
-
-// 閉じるボタン（URLの引数 cls=1の場合のみ有効)
 var closeButtonControl = null;
-
-// iframe版
 var isIframe = false;
-
-// ズームバー表示
 var hasZoomCtrl = true;
-
-// スケールバー
 var hasScaleBar = true;
-
-// 地図ボタン
 var hasMapCtrl = true;
-
-// 作図ボタンの表示
 var isSakuzu = true;
-
-// リンク表示
 var permalinkControl = null;
-
-// 設定メニュー
 var configMenu = null;
-
-// 地図選択パネル
 var selectMapPanel = null;
-
-// ベースマップ
 var webtisMap;
-
-//磁北線レイヤ
-var jihokuLayer = new OpenLayers.Layer.Vector("jihoku", {		//線とラベル
+var jihokuLayer = new OpenLayers.Layer.Vector("jihoku", {
 	styleMap: new OpenLayers.StyleMap({'default':{
 		labelXOffset: 25,
 		label: "${label}度",
@@ -661,10 +481,9 @@ var jihokuLayer = new OpenLayers.Layer.Vector("jihoku", {		//線とラベル
 	}})
 });
 
-//UTMポイントレイヤ
 var utmPointLayer = new OpenLayers.Layer.Vector("utmPoint", {
 	styleMap: new OpenLayers.StyleMap({'default':{
-			pointRadius: 12,		//これがアイコンの大きさらしい
+			pointRadius: 12,
 			externalGraphic: "http://cyberjapan.jp/symbols/080t.png",
 			labelXOffset: 15,
 			labelYOffset: 0,
@@ -676,22 +495,13 @@ var utmPointLayer = new OpenLayers.Layer.Vector("utmPoint", {
 	}})
 });
 
-var popup;	//グローバルオブジェクトして定義
-
-//右クリックポップアップ、2つ以上開かないように設定
+var popup;
 var popupflag;
-
 var timerID;
-
-//-- 表示設定ここから
 var centercross = false;	// 中心位置表示
-
 var iconlabel = false;		// アイコン＋ラベル
-
 var tabInit = 1;			// 初期表示するタブのインデックス
-
 var dirInit = "";			// 初期状態でオープンするフォルダ
-
 var tabIdList = {
 	"map": 1,
 	"geodetic": 2,
@@ -700,39 +510,26 @@ var tabIdList = {
 	"sakuzu": 5,
 	"search": 6
 };
-//-- 表示設定ここまで
 
-//右クリックメニュー表示経緯度の算出用定数(ズームレベル:0から順に設定)
 var popupcalc = new Array(1280000, 640000, 320000, 160000, 80000, 40000, 20000, 10000, 5000, 2500, 1200, 600, 300, 150, 80, 40, 20, 10, 5);
-
-//十字線コントロール
 var crosshairs = null;
-
-// geojsonを受け取るか（HTML保存時＝true）
 var isReceiveGeoJson = false;
 var isReceivePrintData = false;
 
-/*地図の初期表示設定*/
-function init()
-{
-
-
-
-    //httpリンク
-    var url=location.search.substring(1);		//urlの?以下を取得
-	if(url)	{									//?以下が取得できた時の処理
-		hikisu = hikisu_all[1].split("&");	//さらに「&」で分割
-		initZoomLv = 15;	//うぉっちず対策のために初期ズームレベルを設定
-
+function init() {
+  var url=location.search.substring(1);
+	if(url)	{
+		hikisu = hikisu_all[1].split("&");
+		initZoomLv = 15;
 		for (i in hikisu)	{
 			hikisu_value = hikisu[i].split("=");
-			if (hikisu_value[0] == "meshcode") {	//引数が「meshcode=」の場合
-				var meshCodeThis = hikisu_value[1];	//「meshcode=」の引数を取得。通常は8桁の数字
-				initCX = meshCodeThis.slice(2,4)-0+100+meshCodeThis.slice(5,6)/60*7.5+meshCodeThis.slice(7,8)/5/60*7.5/2+7.5/4/60;	//メッシュコードから中心座標を取得
+			if (hikisu_value[0] == "meshcode") {
+				var meshCodeThis = hikisu_value[1];
+				initCX = meshCodeThis.slice(2,4)-0+100+meshCodeThis.slice(5,6)/60*7.5+meshCodeThis.slice(7,8)/5/60*7.5/2+7.5/4/60;
 				initCY = meshCodeThis.slice(0,2)/1.5+meshCodeThis.slice(4,5)/60*5+meshCodeThis.slice(6,7)/5/60*5/2+5/4/60;
-			}else if(hikisu_value[0] == "b")	{		//引数がBLの「b=」の場合
-				var coord_b = hikisu_value[1];		//「b=」の引数を取得。
-				initCY = coord_b.slice(0,2) - 0 + coord_b.slice(2,4)/60 + coord_b.slice(4,10)/3600;		//60進法経緯度値を10進度に変更
+			}else if(hikisu_value[0] == "b")	{
+				var coord_b = hikisu_value[1];
+				initCY = coord_b.slice(0,2) - 0 + coord_b.slice(2,4)/60 + coord_b.slice(4,10)/3600;
 			}else if(hikisu_value[0] == "l")	{		//引数がBLの「l=」の場合
 				var coord_l = hikisu_value[1];		//「l=」の引数を取得。
 				initCX = coord_l.slice(0,3) - 0 + coord_l.slice(3,5)/60 + coord_l.slice(5,10)/3600;
@@ -2830,10 +2627,7 @@ $(document).ready(function(){
 		$.receiveMessage(jsonPrintDataReceiver);
 	}
 });
-
--->
-</script>
-
+--></script>
 </body>
 </html>
 
