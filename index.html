@@ -47,7 +47,7 @@ a.fullscreen:hover {cursor: default;}
 	border-bottom: 1px solid maroon; border-left: 1px solid #fee;
 }
 .selmaptitle {
-	color: #000; font-size: 14px;	margin-bottom: 2px;	font-weight: bold;
+  color: #000; font-size: 14px;	margin-bottom: 2px;	font-weight: bold;
 }
 a.sel {text-decoration: none; color: #000;	cursor: default;}
 a:hover.sel {text-decoration: none; color: #000;}
@@ -57,13 +57,9 @@ a:hover.sel {text-decoration: none; color: #000;}
 	vertical-align: middle;	cursor: pointer; border: 1px solid black;
 	text-align: center;	width: 40px; height: 40px;
 }
-.sz_size_list {
-	vertical-align: middle;	cursor: pointer; text-align: left;
-}
+.sz_size_list {vertical-align: middle;	cursor: pointer; text-align: left;}
 .sz_size_list:hover {background-color: #CAFFFF;}
-.sz_line_width {
-	vertical-align: middle;	cursor: pointer; text-align: center;
-}
+.sz_line_width {vertical-align: middle;	cursor: pointer; text-align: center;}
 #popup_clipboard {
 	background-color: #fed;	width: 273px;	padding: 3px 0px 2px 5px;
 	border-top: 1px solid #fee;	border-right: 1px solid maroon;
@@ -82,9 +78,7 @@ a:hover.sel {text-decoration: none; color: #000;}
 	color: rgb(51, 51, 255);
 	cursor: pointer;
 }
-.configMenuItem:hover {
-	background-color: #FFFFC2;
-}
+.configMenuItem:hover {background-color: #FFFFC2;}
 .configMenuTitle {
 	padding: 3px 0px 2px 5px;
 	background-color: rgb(51, 51, 255);
@@ -95,15 +89,9 @@ a:hover.sel {text-decoration: none; color: #000;}
 	font-size: 12px;
 	color: #ffffff;
 }
-
 .configMenuMarker {
-	position: absolute;
-	right: 6px;
-	background-color: transparent;
-	font-size: 12px;
-	font-weight: bold;
-	margin-top: 2px;
-	color: #22AAAA;
+	position: absolute;	right: 6px;	background-color: transparent;
+	font-size: 12px; font-weight: bold;	margin-top: 2px; color: #2aa;
 }
 </style>
 
@@ -966,7 +954,6 @@ function arrange() {
       map_style.border = "none";  //地図の枠線(印刷プレビュー用)を非表示
     }
     else{
-      //ヘッダー・左ペイン・地図部・縮小ボタン部のfullscreenレイアウト
       header_style = document.getElementById("header").style;
       header_style.position = "absolute";
       header_style.left = 0 + "px";
@@ -988,167 +975,118 @@ function arrange() {
       map_style.width = w + "px";
       map_style.height = h + "px";
       map_style.overflow = "hidden";
-      map_style.border = "none";  //地図の枠線(印刷プレビュー用)を非表示
+      map_style.border = "none";
     }
-
-  //右クリックメニュー(×マーク＆サブメニュー)を閉じる
   closePopup();
 }
 
-/*fullscreen後に元のレイアウトに戻す関数(カウンター付き) */
 function arrange2() {
-
-  if( sakuzuModule.CurrentMode != "none"){  //作図パレット表示時は画面切り替えしない -- merge1227
+  if( sakuzuModule.CurrentMode != "none"){
     return false;
   }
+  var obj = window;
+  if(window.opera) {
+    var w = obj.innerWidth;
+    var h = obj.innerHeight;
+  } else if(document.all){
+    var w = obj.document.documentElement.clientWidth;
+    var h = obj.document.documentElement.clientHeight;
+  } else if(document.getElementById){
+    var w = obj.innerWidth;
+    var h = obj.innerHeight;
+  }
+  var header_style = document.getElementById("header").style;
+  header_style.position = "absolute";
+  header_style.left = 0 + "px";
+  header_style.top = 0 + "px";
+  header_style.width = w + "px";
+  header_style.height = 60 + "px";
+  header_style.overflow = "hidden";
+  var left_style = document.getElementById("Left").style;
+  left_style.position = "absolute";
+  left_style.left = 0 + "px";
+  left_style.top = 62 + "px";
+  left_style.width = 300 + "px";
+  left_style.height = (h - 62) + "px";
+  left_style.overflow = "hidden";
+  var map_style = document.getElementById("map").style;
+  map_style.position = "absolute";
+  map_style.left = 302 + "px";
+  map_style.top = 62 + "px";
+  map_style.width = ( w - 302 ) + "px";
+  map_style.height = ( h - 62 ) + "px";
+  map_style.overflow = "hidden";
+  map.removeControl(shrinkcontrol);
 
-  //ウィンドウサイズを取得
-    var obj = window;
-    if( window.opera ) {  //Operaの場合
-        var w = obj.innerWidth;
-        var h = obj.innerHeight;
-    } else if( document.all ){  //IEの場合
-        var w = obj.document.documentElement.clientWidth;
-        var h = obj.document.documentElement.clientHeight;
-    } else if( document.getElementById ){    //IE以外の場合
-        var w = obj.innerWidth;
-        var h = obj.innerHeight;
-    }
-
-    //ヘッダー・左ペイン・地図表示部・縮小ボタン部のスタイル
-    var header_style = document.getElementById("header").style;
-    header_style.position = "absolute";
-    header_style.left = 0 + "px";
-    header_style.top = 0 + "px";
-    header_style.width = w + "px";
-    header_style.height = 60 + "px";
-    header_style.overflow = "hidden";
-    var left_style = document.getElementById("Left").style;
-    left_style.position = "absolute";
-    left_style.left = 0 + "px";
-    left_style.top = 62 + "px";
-    left_style.width = 300 + "px";
-    left_style.height = (h - 62) + "px";
-    left_style.overflow = "hidden";
-    var map_style = document.getElementById("map").style;
-    map_style.position = "absolute";
-    map_style.left = 302 + "px";
-    map_style.top = 62 + "px";
-    map_style.width = ( w - 302 ) + "px";
-    map_style.height = ( h - 62 ) + "px";
-    map_style.overflow = "hidden";
-
-    map.removeControl(shrinkcontrol);
-
-  //印刷サイズ選択パネルを閉じる
   printsizeselectclose();
-
-  //背景地図選択ウィンドウを閉じる
   clickmapclosefloating();
-
-  //右クリックメニュー(×マーク＆サブメニュー)を閉じる
   closePopup();
-
-  //マップ領域のリサイズ設定
   map.updateSize();
   sakuzuModule.disablePopupLayer();
-  sakuzuModule.enablePopupLayer();  // -- merge1227
-  if (!dispFlg){
-    sakuzuModule.disablePopupLayer();
-  }
+  sakuzuModule.enablePopupLayer();
+  if(!dispFlg){sakuzuModule.disablePopupLayer();}
   sakuzuModule.updateDrawControls();
-
   fullscreenMode = false;
 }
 
-/*マップのスタイル設定*/
 function styleSetting() {
-  if (printMapFlg == 0){
-    //標準画面
-    arrange();
-  } else {
-    //印刷プレビュー画面
-    arrange_print();
-  }
+  if (printMapFlg == 0){arrange();} else {arrange_print();}
 }
 
-/*地図の全画面表示*/
 function fullscreen(){
-
-  if( sakuzuModule.CurrentMode != "none"){  //作図パレット表示時は画面切り替えしない -- merge1227
-    return false;
-  }
-
-  //ウィンドウサイズを取得
+  if( sakuzuModule.CurrentMode != "none"){return false;}
   var obj = window;
-    if( window.opera ) {
-        var w = obj.innerWidth;
-        var h = obj.innerHeight;
-    } else if( document.all ){                //ie4-
-        var w = obj.document.documentElement.clientWidth;
-        var h = obj.document.documentElement.clientHeight;
-    } else if( document.getElementById ){    //n6-7, m1, s1
-        var w = obj.innerWidth;
-        var h = obj.innerHeight;
-    }
-
-    //ヘッダー・左ペイン・地図部・縮小ボタン部のfullscreen表示
-    header_style = document.getElementById("header").style;
-    header_style.position = "absolute";
-    header_style.left = 0 + "px";
-    header_style.top = 0 + "px";
-    header_style.width = 0 + "px";
-    header_style.height = 0 + "px";
-    header_style.overflow = "hidden";
-    left_style = document.getElementById("Left").style;
-    left_style.position = "absolute";
-    left_style.left = 0 + "px";
-    left_style.top = 0 + "px";
-    left_style.width = 0 + "px";
-    left_style.height = 0 + "px";
-    left_style.overflow = "hidden";
-    map_style = document.getElementById("map").style;
-    map_style.position = "absolute";
-    map_style.left = 0 + "px";
-    map_style.top = 0 + "px";
-    map_style.width = w + "px";
-    map_style.height = h + "px";
-    map_style.overflow = "hidden";
-
-    //地図全画面表示になったことを記録(リサイズの挙動を変えるため)
-    fullscreenMode = true;
-
-    if (!isIframe && !checkMT()){
-      //地図表示領域左上に地図表示縮小ボタンを追加する
-      shrinkcontrol = new webtis.Control.ShrinkMap();
-      map.addControl(shrinkcontrol);
+  if( window.opera ) {
+    var w = obj.innerWidth;
+    var h = obj.innerHeight;
+  } else if( document.all ){
+    var w = obj.document.documentElement.clientWidth;
+    var h = obj.document.documentElement.clientHeight;
+  } else if( document.getElementById ){    //n6-7, m1, s1
+    var w = obj.innerWidth;
+    var h = obj.innerHeight;
   }
 
-  //印刷サイズ選択パネルを閉じる
+  header_style = document.getElementById("header").style;
+  header_style.position = "absolute";
+  header_style.left = 0 + "px";
+  header_style.top = 0 + "px";
+  header_style.width = 0 + "px";
+  header_style.height = 0 + "px";
+  header_style.overflow = "hidden";
+  left_style = document.getElementById("Left").style;
+  left_style.position = "absolute";
+  left_style.left = 0 + "px";
+  left_style.top = 0 + "px";
+  left_style.width = 0 + "px";
+  left_style.height = 0 + "px";
+  left_style.overflow = "hidden";
+  map_style = document.getElementById("map").style;
+  map_style.position = "absolute";
+  map_style.left = 0 + "px";
+  map_style.top = 0 + "px";
+  map_style.width = w + "px";
+  map_style.height = h + "px";
+  map_style.overflow = "hidden";
+
+  fullscreenMode = true;
+  if (!isIframe && !checkMT()){
+    shrinkcontrol = new webtis.Control.ShrinkMap();
+    map.addControl(shrinkcontrol);
+  }
+
   printsizeselectclose();
-
-  //検索絞込み設定画面を閉じる
   $("#config_cs").animate({height: "hide", opacity: "toggle"},500);
-
-  //背景地図選択ウィンドウを閉じる
   clickmapclosefloating();
-
-  //右クリックメニュー(×マーク＆サブメニュー)を閉じる
   closePopup();
-
-  //マップ領域のリサイズ設定
   map.updateSize();
-  sakuzuModule.enablePopupLayer();  // merge1227
-
+  sakuzuModule.enablePopupLayer();
 }
 
-/* 移動ボタンで中心位置を移動させる */  //【Ver4.0】改修にて削除 ->復活
 function moveto() {
   if(document.getElementById('center')){
     var center = document.getElementById("center").value;
     if(center) {
-
-      /*UTMパラメータが入力されたときの処理*/
       if(center.substring(2, 3).match(/^[A-Z]/)){
         var utmValue;
         var mark;
@@ -1159,15 +1097,11 @@ function moveto() {
         newMgrs = center.substring(3,5);
         pointX = center.substring(5,9);
         pointY = center.substring(9,13);
-
         $.ajax({
           url: 'http://portal.cyberjapan.jp/site/mapuse4/grid/mgrsXY.php?mgrs=' + newMgrs + '&mark=' + mark,
           type: 'GET',
           dataType: 'jsonp',
-          /*返却されたJSONデータを処理*/
           success: function(data) {
-
-            /*UTM座標の作成*/
             var topX = data.topX;
             var topY = data.topY;
             var utmZone = data.utmZone;
@@ -1175,8 +1109,6 @@ function moveto() {
             pointY = (pointY * 10) + (topY * 100000);
             var wsPoint = new OpenLayers.Geometry.Point(pointX, pointY);
             var projUTM = null;
-
-            /* UTMゾーンによって投影法を設定 */
             if(utmZone==51)  {
               projUTM = new OpenLayers.Projection('EPSG:3097');
             }else if(utmZone==52)  {
@@ -1192,12 +1124,8 @@ function moveto() {
             }else{
               projUTM = null;
             }
-
-            /* Webメルカトルに投影変換して中心位置を移動 */
             var wsTrmPoint = wsPoint.transform(projUTM,projection900913);
             map.setCenter(new OpenLayers.LonLat(wsTrmPoint.x, wsTrmPoint.y), 15);
-
-            /* UTMポイントを表示する */
             var lonlatPoint = wsTrmPoint.transform(projection900913, projection4326);
             utmPointDraw(lonlatPoint.x, lonlatPoint.y);
           }
@@ -1213,7 +1141,6 @@ function moveto() {
       }
     }
   }else{
-      //度分秒のそれぞれの入力値を取得
     var EH = Number(document.getElementById("deglon").value);
     var EN = Number(document.getElementById("minlon").value);
     var ESS = Number(document.getElementById("seclon").value);
@@ -1222,74 +1149,47 @@ function moveto() {
     var NSS = Number(document.getElementById("seclat").value);
     var lon = EH + EN/60.0 + ESS/3600.0;
     var lat = NH + NN/60.0 + NSS/3600.0;
-    //下記の場合わけのために現在の中心経緯度・ズームレベルの取得
-      var center=map.getCenter();
-      var center2=center.transform(projection900913,projection4326);
-      var lat2 = center2.lat;
-      var lon2 = center2.lon;
-      //南緯の場合は入力値の符号を逆にする
-    if(lat2 < 0){
-      lat = lat * -1;
-    }
-    //西経の場合は入力値の符号を逆にする
-    if(lon2 < 0){
-      lon = lon * -1;
-    }
-
+    var center=map.getCenter();
+    var center2=center.transform(projection900913,projection4326);
+    var lat2 = center2.lat;
+    var lon2 = center2.lon;
+    if(lat2 < 0){lat = lat * -1;}
+    if(lon2 < 0){lon = lon * -1;}
     var zoom = 15;
     map.setCenter(new OpenLayers.LonLat(lon,lat).transform(projection4326,projection900913), zoom);
     return false;
   }
 }
 
-/* 検索ボタンでテキストワード地図検索【Ver4.0】 */
-function mapsearch() {
-  csModule.executeSearch("autoMove");
-}
+function mapsearch() {csModule.executeSearch("autoMove");}
 
-/* 住宅検索から中心位置を移動させる */
 function moveto2(lon,lat) {
   map.setCenter(new OpenLayers.LonLat(lon,lat).transform(projection4326,projection900913), 10);
-
-  //2回目以降は前のマーカーを消す
   if(flagmarker == 1){
   map.removeLayer(map.getLayersByName('Marker')[0]);
   }
-  //マーカーをおく
   var marker = new OpenLayers.Layer.Markers("Marker");
   map.addLayer(marker);
   marker.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(lon,lat).transform(projection4326,projection900913)));
   flagmarker = 1;
 }
 
-
-/*マウス操作時の処理*/
-//縮尺表示(2万5千とかだすやつ)コントロールの表示・非表示
-//背景地図選択ウィンドウの表示・非表示
 function mousecontrol() {
-
   map.events.register('mousemove', map, function(e){
+  var zoomber_x1;
+  var zoomber_x2;
+  var zoomber_y1;
+  var zoomber_y2;
+  var button_x1;
+  var button_x2;
+  var button_y1;
+  var button_y2;
 
-    //ズームバー
-    var zoomber_x1;
-    var zoomber_x2;
-    var zoomber_y1;
-    var zoomber_y2;
-    //背景地図選択ボタン
-    var button_x1;
-    var button_x2;
-    var button_y1;
-    var button_y2;
-
-    if (printMapFlg == 0)
-    {  //印刷プレビュー画面では非表示
-
-      var mouseX = getMousePosition(e).x;
-      var mouseY = getMousePosition(e).y;
-
-      //ウィンドウサイズを取得
-      var obj = window;
-      if( window.opera ) {  //Operaの場合
+  if (printMapFlg == 0) {
+    var mouseX = getMousePosition(e).x;
+    var mouseY = getMousePosition(e).y;
+    var obj = window;
+    if( window.opera ) {
         var w = obj.innerWidth;
       } else if( document.all ){  //IEの場合
         var w = obj.document.documentElement.clientWidth;
@@ -1935,18 +1835,14 @@ onPopup = function(e) {
         +  result.lat+","
         +  map.getZoom()
         +  ");window.parent.closePopup();;'>"
-        +  '<span style="cursor:   pointer"><FONT color="#0000CC"><u>地理院地図3Dで開く</u></FONT></span></a>'
+        +  '<span style="cursor:pointer"><FONT color="#00c"><u>地理院地図3Dで開く</u></FONT></span></a>'
     + "<FONT size='-1'>  (<a target='_blank' href='http://cyberjapandata.gsi.go.jp/3d/index.html' "
     + " >使い方</a>)</FONT></TD></TR>";
 
-
-
-  // 他のサイトへのリンク
   popupText += "<TR><TD colspan='2' " + liststyle1 + ">";
   popupText += "他のWeb地図で見る: <a href='#' onclick='openMapLinkPos(LinkKey.Mapion,"+lon1+","+lat1+");return false;'>マピオン</a> / <a href='#' onclick='openMapLinkPos(LinkKey.ItsumoNavi,"+lon1+","+lat1+");return false;'>いつもNAVI</a></TD></TR>";
 
 
-  // 磁北線表示を有効にするかどうかの場合わけ
   if (20 <= result.lat && result.lat <= 46 && 122 <= result.lon && result.lon <= 154) {
     popupText += "<TR><TD " + liststyle2 + onmouse + " onclick='window.parent.JihokuLineDraw("+lon1+","+lat1+");window.parent.closePopup();'>";
     popupText += "磁北線の表示</TD>";
@@ -1986,7 +1882,6 @@ onPopup = function(e) {
     popupText += "UTMグリッドの非表示</TD></TR>";
   }
 
-  //経緯度線グリッドを有効にするかどうかの場合わけ
   if((zoom==12)&&(result.lon>=120)&&(result.lon<156)&&(result.lat>=0)) {
     popupText += "<TR><TD " + liststyle2 + ">";
     popupText += "経緯度グリッドの表示<BR />(";
@@ -2349,47 +2244,33 @@ $(document).ready(function(){
     tabInit = tabIdList["search"];
     if (execsearch == ""){
       var histURL = "http://portal.cyberjapan.jp/site/mapuse4/index.html?lon=" + initCX + "&lat=" + initCY;
-      document.cookie = "hist=" + keyword + "; expires=Tue, 1-Jan-2030 00:00:00 GMT; path=/";
-      document.cookie = "histURL=" + histURL + "; expires=Tue, 1-Jan-2030 00:00:00 GMT; path=/;";
+      document.cookie = "hist=" + keyword + 
+        "; expires=Tue, 1-Jan-2030 00:00:00 GMT; path=/";
+      document.cookie = "histURL=" + histURL + 
+        "; expires=Tue, 1-Jan-2030 00:00:00 GMT; path=/;";
     }
   }
-
   if (execsearch != ""){
     var param = (initZoomLv > 0) ? "" + initZoomLv : "autoMove";
     csModule.executeSearch(param);
-  }else{
-    csModule.prncenter();
-  }
-
+  }else{csModule.prncenter();}
   if (kmlid != ''){
-    var parameter = {
-      mode : 'url',
-      fname : kmlid
-    };
+    var parameter = {mode : 'url', fname : kmlid};
     $.ajax({
-      type: "POST",
-      async: false,
-      url: READURL,
-      data: parameter,
-      dataType: "jsonp",
+      type: "POST", async: false, url: READURL,
+      data: parameter, dataType: "jsonp",
       success : function(data, status) {
         if(data != null){
           try {
             Sakuzu.loadJSON(data, false);
-
             sakuzuModule.disablePopupLayer();
             if (dispFlg && sakuzuModule.CurrentMode == "none"){
               sakuzuModule.enablePopupLayer();
             }
-          }
-          catch (e) {
-            alert("ファイル読み込み中に例外が発生しました。");
-          }
+          } catch (e) {alert("ファイル読み込み中に例外が発生しました。");}
         }
       },
-      error : function(data, status) {
-        alert("作図情報を読込めませんでした。");
-      }
+      error : function(data, status) {alert("作図情報を読込めませんでした。");}
     });
   }
 
@@ -2400,35 +2281,24 @@ $(document).ready(function(){
     module.ShowPlugin(data, mapHandler, null);
     module.init_ctrl();
     module.initTree();
-
     pluginModule[module.pluginID] = module;
     pluginSliderModule[module.pluginID] = new PluginSlider(module.pluginID);
-
     module.initShowLayers(initialLibLayers);
   }
-
   createPluginTree("#mapTab", libraryMapData, initialLibLayers);
   createPluginTree("#geodeticTab", libraryGeodeticData, initialLibLayers);
   createPluginTree("#saigaiTab", librarySaigaiData, initialLibLayers);
   createPluginTree("#otherTab", libraryOtherData, initialLibLayers);
-
   configMenu = $("#configButton");
   configMenu.ConfigMenu({
     panel: $("#configPanel")
   });
-
   selectMapPanel = $("#selectmappanel");
   selectMapPanel.SelectMapPanel();
-
   $('#infoTabs').tabs({selected: tabInit - 1});
-
   if (dirInit) {
     var tree = pluginModule[tabInit - 1].getTree();
-
-    tree.visit(function(node){
-      node.expand(false);
-    });
-
+    tree.visit(function(node){node.expand(false);});
     var keyList = dirInit.split(',')
     for (var i = 0; i < keyList.length; i++) {
       var node = tree.getNodeByKey(keyList[i]);
@@ -2437,16 +2307,9 @@ $(document).ready(function(){
       }
     }
   }
-
   if (isFullscreen || checkMT()) fullscreen();
-
-  if (isReceiveGeoJson){
-    $.receiveMessage(jsonReceiver);
-  }
-
-  if (isReceivePrintData){
-    $.receiveMessage(jsonPrintDataReceiver);
-  }
+  if (isReceiveGeoJson){$.receiveMessage(jsonReceiver);}
+  if (isReceivePrintData){$.receiveMessage(jsonPrintDataReceiver);}
 });
 --></script>
 </body>
