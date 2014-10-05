@@ -137,12 +137,10 @@ webtis.Control.ShrinkMap = OpenLayers.Class(OpenLayers.Control, {
 	draw: function (px) {
 		if (this.div == null) {
 			var mapSize = this.map.getSize();
-
 			this.div = OpenLayers.Util.createDiv(this.id);
 			this.div.style.position = "absolute";
 			this.div.style.top = 0 + "px";
 			this.div.style.left = 0 + "px";
-
 			this.createCtrlImage("http://cyberjapandata.gsi.go.jp/portal/site/mapuse4/image/se2.gif", 0, function(e) {
 				arrange2();
 				OpenLayers.Event.stop(e);
@@ -151,14 +149,12 @@ webtis.Control.ShrinkMap = OpenLayers.Class(OpenLayers.Control, {
 		}
 		return this.div;
 	},
-
 	adjustPositionOnMapResize: function() {
 		if (this.div != null) {
 			var mapSize = this.map.getSize();
 			this.div.style.top = 10 + "px";
 		}
 	},
-
 	CLASS_NAME: "webtis.Control.ShrinkMap"
 });
 
@@ -172,7 +168,8 @@ OpenLayers.Control.Crosshairs = OpenLayers.Class(OpenLayers.Control, {
 	draw: function() {
 		OpenLayers.Control.prototype.draw.apply(this, arguments);
 		var px = this.position.clone();
-		var centered = new OpenLayers.Pixel(Math.round(px.x - (this.size.w / 2)), Math.round(px.y - (this.size.h / 2)));
+		var centered = new OpenLayers.Pixel(Math.round(px.x - (this.size.w / 2)),
+       Math.round(px.y - (this.size.h / 2)));
 		this.buttons = new Array();
 		this.div = OpenLayers.Util.createAlphaImageDiv(
 				OpenLayers.Util.createUniqueID("OpenLayers.Control.Crosshairs_"),
@@ -185,7 +182,8 @@ OpenLayers.Control.Crosshairs = OpenLayers.Class(OpenLayers.Control, {
 	setPosition: function(position) {
 		this.position = position;
 		var px = this.position.clone();
-		var centered = new OpenLayers.Pixel(Math.round(px.x - (this.size.w / 2)), Math.round(px.y - (this.size.h / 2)));
+		var centered = new OpenLayers.Pixel(Math.round(px.x - (this.size.w / 2)), 
+      Math.round(px.y - (this.size.h / 2)));
 		this.div.style.left = centered.x + "px";
 		this.div.style.top = centered.y + "px";
 	},
@@ -204,7 +202,6 @@ webtis.Control.CloseButton = OpenLayers.Class(OpenLayers.Control, {
 		image.style.width = '26px';
 		image.style.height = '26px';
 		if (handler) {
-			// only handle mousedown
 			OpenLayers.Event.observe(image, "mousedown",
 				OpenLayers.Function.bindAsEventListener(handler, this));
 			OpenLayers.Event.observe(image, "click",
@@ -220,38 +217,31 @@ webtis.Control.CloseButton = OpenLayers.Class(OpenLayers.Control, {
 		}
 		this.div.appendChild(image);
 	},
-
 	draw: function (px) {
 		if (this.div == null) {
 			var mapSize = this.map.getSize();
-
 			this.div = OpenLayers.Util.createDiv(this.id);
 			this.div.style.position = "absolute";
 			this.div.style.top = 42 + "px";
 			this.div.style.right = 32 + "px";
-
 			this.createCtrlImage("http://cyberjapandata.gsi.go.jp/portal/site/mapuse4/image/close_F.png", 0, function(e) {
 				window.close();
-				//self.close();
 				OpenLayers.Event.stop(e);
 				return false;
 			});
 		return this.div;
 		}
 	},
-
 	adjustPositionOnMapResize: function() {
 		if (this.div != null) {
 			var mapSize = this.map.getSize();
 			this.div.style.top = 10 + "px";
 		}
 	},
-
 	CLASS_NAME: "webtis.Control.CloseButton"
 });
 
 webtis.Control.keisoku = OpenLayers.Class(OpenLayers.Control, {
-
 	createCtrlImage: function(url, left, handler) {
 		var	image = document.createElement('img');
 		image.src = url;
@@ -282,12 +272,10 @@ webtis.Control.keisoku = OpenLayers.Class(OpenLayers.Control, {
 	draw: function (px) {
 		if (this.div == null) {
 			var mapSize = this.map.getSize();
-
 			this.div = OpenLayers.Util.createDiv(this.id);
 			this.div.style.position = "absolute";
 			this.div.style.top = 10 + "px";
 			this.div.style.right = 120 + "px";
-
 			this.createCtrlImage("http://cyberjapandata.gsi.go.jp/portal/site/mapuse4/image/measure.png", 0, function(e) {
 				openMeasure(this);
 				OpenLayers.Event.stop(e);
@@ -296,7 +284,6 @@ webtis.Control.keisoku = OpenLayers.Class(OpenLayers.Control, {
 		return this.div;
 		}
 	},
-
 	adjustPositionOnMapResize: function() {
 		if (this.div != null) {
 			var mapSize = this.map.getSize();
@@ -308,7 +295,6 @@ webtis.Control.keisoku = OpenLayers.Class(OpenLayers.Control, {
 });
 
 webtis.Control.djplogo = OpenLayers.Class(OpenLayers.Control, {
-
 	createCtrlImage: function(url, left, handler) {
 		var	image = document.createElement('img');
 		image.src = url;
@@ -319,7 +305,6 @@ webtis.Control.djplogo = OpenLayers.Class(OpenLayers.Control, {
 		image.title = '電子国土';
 		image.alt = '電子国土';
 		if (handler) {
-			// only handle mousedown
 			OpenLayers.Event.observe(image, "mousedown",
 				OpenLayers.Function.bindAsEventListener(handler, this));
 			OpenLayers.Event.observe(image, "click",
@@ -339,12 +324,10 @@ webtis.Control.djplogo = OpenLayers.Class(OpenLayers.Control, {
 	draw: function (px) {
 		if (this.div == null) {
 			var mapSize = this.map.getSize();
-
 			this.div = OpenLayers.Util.createDiv(this.id);
 			this.div.style.position = "absolute";
 			this.div.style.bottom = 38 + "px";
 			this.div.style.left = 10 + "px";
-
 			this.createCtrlImage("http://cyberjapandata.gsi.go.jp/portal/site/mapuse4/image/icon01.gif", 0, function(e) {
 				window.open("http://portal.cyberjapan.jp/", "_blank");
 				OpenLayers.Event.stop(e);
@@ -353,14 +336,12 @@ webtis.Control.djplogo = OpenLayers.Class(OpenLayers.Control, {
 		}
 		return this.div;
 	},
-
 	adjustPositionOnMapResize: function() {
 		if (this.div != null) {
 			var mapSize = this.map.getSize();
 			this.div.style.bottom = 38 + "px";
 		}
 	},
-
 	CLASS_NAME: "webtis.Control.djplogo"
 });
 
@@ -423,21 +404,16 @@ var jihokuLayer = new OpenLayers.Layer.Vector("jihoku", {
 		fontColor: "#FF0000"
 	}})
 });
-
 var utmPointLayer = new OpenLayers.Layer.Vector("utmPoint", {
 	styleMap: new OpenLayers.StyleMap({'default':{
 			pointRadius: 12,
 			externalGraphic: "http://cyberjapan.jp/symbols/080t.png",
-			labelXOffset: 15,
-			labelYOffset: 0,
+			labelXOffset: 15, labelYOffset: 0,
 			label: "${zone}${mark}${mgrs}${utmx10m}${utmy10m}",
-			fontColor: "#ff0000",
-			fontSize: "30px",
-			fontWeight: "bold",
+			fontColor: "#ff0000", fontSize: "30px", fontWeight: "bold",
 			labelAlign: "lm"
 	}})
 });
-
 var popup;
 var popupflag;
 var timerID;
@@ -446,15 +422,12 @@ var iconlabel = false;
 var tabInit = 1;
 var dirInit = "";
 var tabIdList = {
-	"map": 1,
-	"geodetic": 2,
-	"saigai": 3,
-	"other": 4,
-	"sakuzu": 5,
-	"search": 6
+	"map": 1, "geodetic": 2, "saigai": 3,	"other": 4,	"sakuzu": 5, "search": 6
 };
 
-var popupcalc = new Array(1280000, 640000, 320000, 160000, 80000, 40000, 20000, 10000, 5000, 2500, 1200, 600, 300, 150, 80, 40, 20, 10, 5);
+var popupcalc = new Array(
+  1280000, 640000, 320000, 160000, 80000, 40000, 20000, 10000, 5000, 
+  2500, 1200, 600, 300, 150, 80, 40, 20, 10, 5);
 var crosshairs = null;
 var isReceiveGeoJson = false;
 var isReceivePrintData = false;
@@ -466,198 +439,170 @@ function init() {
 		initZoomLv = 15;
 		for (i in hikisu)	{
 			hikisu_value = hikisu[i].split("=");
-			if (hikisu_value[0] == "meshcode") {
+			if(hikisu_value[0] == "meshcode") {
 				var meshCodeThis = hikisu_value[1];
-				initCX = meshCodeThis.slice(2,4)-0+100+meshCodeThis.slice(5,6)/60*7.5+meshCodeThis.slice(7,8)/5/60*7.5/2+7.5/4/60;
-				initCY = meshCodeThis.slice(0,2)/1.5+meshCodeThis.slice(4,5)/60*5+meshCodeThis.slice(6,7)/5/60*5/2+5/4/60;
-			}else if(hikisu_value[0] == "b")	{
+				initCX = meshCodeThis.slice(2, 4) - 0 + 100 + 
+          meshCodeThis.slice(5, 6) / 60 * 7.5 +
+          meshCodeThis.slice(7, 8) / 5 / 60 * 7.5 / 2+ 7.5 / 4 / 60;
+				initCY = meshCodeThis.slice(0, 2) / 1.5 +
+          meshCodeThis.slice(4, 5) / 60 * 5 +
+          meshCodeThis.slice(6, 7) / 5 / 60 * 5 / 2 + 5 / 4 /60;
+			} else if(hikisu_value[0] == "b")	{
 				var coord_b = hikisu_value[1];
-				initCY = coord_b.slice(0,2) - 0 + coord_b.slice(2,4)/60 + coord_b.slice(4,10)/3600;
-			}else if(hikisu_value[0] == "l")	{
+				initCY = coord_b.slice(0, 2) - 0 + coord_b.slice(2,4) / 60 +
+          coord_b.slice(4, 10) / 3600;
+			} else if(hikisu_value[0] == "l")	{
 				var coord_l = hikisu_value[1];
-				initCX = coord_l.slice(0,3) - 0 + coord_l.slice(3,5)/60 + coord_l.slice(5,10)/3600;
-			}else if(hikisu_value[0] == "latitude")	{
+				initCX = coord_l.slice(0, 3) - 0 + coord_l.slice(3, 5)/60 +
+          coord_l.slice(5, 10)/3600;
+			} else if(hikisu_value[0] == "latitude")	{
 				initCY = parseFloat(hikisu_value[1]);
-			}else if(hikisu_value[0] == "longitude")	{
+			} else if(hikisu_value[0] == "longitude")	{
 				initCX = parseFloat(hikisu_value[1]);
-			}else if(hikisu_value[0] == "lat")	{
+			} else if(hikisu_value[0] == "lat")	{
 				initCY = parseFloat(hikisu_value[1]);
-			}else if(hikisu_value[0] == "lon")	{
+			} else if(hikisu_value[0] == "lon")	{
 				initCX = parseFloat(hikisu_value[1]);
-			}else if(hikisu_value[0] == "z")	{
+			} else if(hikisu_value[0] == "z")	{
 				initZoomLv = parseInt(hikisu_value[1], 10);
-			}else if(hikisu_value[0] == "did")	{
+			} else if(hikisu_value[0] == "did")	{
 				dataId = hikisu_value[1];
-			}else if(hikisu_value[0] == "key")	{
+			} else if(hikisu_value[0] == "key")	{
 				keyword = hikisu_value[1];
-			}else if(hikisu_value[0] == "es")	{
+			} else if(hikisu_value[0] == "es")	{
 				execsearch = hikisu_value[1];
 				initZoomLv = 0;
-			}else if(hikisu_value[0] == "ma")	{
+			} else if(hikisu_value[0] == "ma")	{
 				setmarker = hikisu_value[1];
-			}else if(hikisu_value[0] == "fid")	{
+			} else if(hikisu_value[0] == "fid")	{
 				if (/[\\/.]/.test(hikisu_value[1]) == false) {
 					kmlid = hikisu_value[1];
 				}
-			}else if(hikisu_value[0].substring(0,4) == "lkey") {
-				initialLibLayers[parseInt(hikisu_value[0].substring(4), 10)] = { 'key': hikisu_value[1] };
-			}else if(hikisu_value[0].substring(0,4) == "lopa") {
+			} else if(hikisu_value[0].substring(0, 4) == "lkey") {
+				initialLibLayers[parseInt(hikisu_value[0].substring(4), 10)] =
+          {'key': hikisu_value[1]};
+			} else if(hikisu_value[0].substring(0,4) == "lopa") {
 				initialLibLayers[parseInt(hikisu_value[0].substring(4), 10)]['opacity'] = parseFloat(hikisu_value[1]);
-			}else if(hikisu_value[0] == "fsc")	{
+			} else if(hikisu_value[0] == "fsc")	{
 				isFullscreen = (hikisu_value[1] != "0");
-			}else if(hikisu_value[0] == "clb")	{
+			} else if(hikisu_value[0] == "clb")	{
 				hasCloseButton = (hikisu_value[1] != "0");
-			}else if(hikisu_value[0] == "ifr") {
+			} else if(hikisu_value[0] == "ifr") {
 				isIframe = (hikisu_value[1] != "0");
-			}else if(hikisu_value[0] == "sca") {
+			} else if(hikisu_value[0] == "sca") {
 				hasScaleBar = (hikisu_value[1] != "0");
-			}else if(hikisu_value[0] == "zmc") {
+			} else if(hikisu_value[0] == "zmc") {
 				hasZoomCtrl = (hikisu_value[1] != "0");
-			}else if(hikisu_value[0] == "rvg") {
+			} else if(hikisu_value[0] == "rvg") {
 				isReceiveGeoJson = (hikisu_value[1] != "0");
-			}else if(hikisu_value[0] == "skz") {
+			} else if(hikisu_value[0] == "skz") {
 				isSakuzu = (hikisu_value[1] != "0");
-			}else if(hikisu_value[0] == "crs") {
+			} else if(hikisu_value[0] == "crs") {
 				centercross = (hikisu_value[1] != "0");
-			}else if(hikisu_value[0] == "tab") {
+			} else if(hikisu_value[0] == "tab") {
 				tabInit = hikisu_value[1];
-			}else if(hikisu_value[0] == "dir") {
+			} else if(hikisu_value[0] == "dir") {
 				dirInit = hikisu_value[1];
-			}else if(hikisu_value[0] == "nmt") {
+			} else if(hikisu_value[0] == "nmt") {
 				isNoMT = true;
-			}else if(hikisu_value[0] == "prt")
-			{
+			} else if(hikisu_value[0] == "prt") {
 				isReceivePrintData = (hikisu_value[1] != "0");
 				if (isReceivePrintData) {
 					isIframe = true;
 					webtis.Layer.BaseMap.isShowLegend = false;
-					hasZoomCtrl = false;
-					hasMapCtrl = false;
-					printMapFlg = true;
+					hasZoomCtrl = false; hasMapCtrl = false; printMapFlg = true;
 				}
 			}
 		}
 	}
-
 	var maxResolution = 156543.0339;
 	KeyboardDefaultsControl = new webtis.Control.GsiKeyboard();
-  var controls = [];
+  var controls = []; /// FIXME
 	controls[0] = new OpenLayers.Control.Navigation({
-		mouseWheelOptions: {interval: 100},
-		handleRightClicks: true
+		mouseWheelOptions: {interval: 100}, handleRightClicks: true
 	});
 	controls[1] = new OpenLayers.Control.Attribution();
 	controls[2] = KeyboardDefaultsControl;
 	var options = {
 		controls: controls,
-		projection: projection900913,
-		displayProjection: projection4326,
-		units: "m",
-		maxResolution: maxResolution,
+		projection: projection900913, displayProjection: projection4326,
+		units: "m", maxResolution: maxResolution,
 		Z_INDEX_BASE: {
-			BaseLayer: 100,
-			Overlay: 325,
-			Feature: 725,
-			Popup: 101750,
-			Control: 102000
+			BaseLayer: 100, Overlay: 325,	Feature: 725,
+			Popup: 101750, Control: 102000
 		}
 	};
-
 	map = new OpenLayers.Map('map', options);
-	map.isValidZoomLevel = function(zoomLevel) {
-        return ( (zoomLevel != null) &&
-                 (zoomLevel >= 2) &&
-                 (zoomLevel < this.getNumZoomLevels()) );
-    };
-    map.resetLayersZIndex = function() {};
-
-	if (hasZoomCtrl) {
-		zoomcontrol = new webtis.Control.PanZoomBar
-		({
-			slideFactor:100,
-			minZoomLevel: 2
+	map.isValidZoomLevel = function(zoomLevel){
+    return ((zoomLevel != null) && (zoomLevel >= 2) &&
+      (zoomLevel < this.getNumZoomLevels()));
+  };
+  map.resetLayersZIndex = function() {};
+	if(hasZoomCtrl){
+		zoomcontrol = new webtis.Control.PanZoomBar({
+			slideFactor:100, minZoomLevel: 2
 		});
 		map.addControl(zoomcontrol);
 	}
-
-	if (hasScaleBar) {
+	if(hasScaleBar){
 		map.addControl(new OpenLayers.Control.ScaleBar({divisions:1}));
 	}
-
-	if (hasMapCtrl && !checkMT()){
+	if(hasMapCtrl && !checkMT()){
 		mapfloating = new webtis.Control.MapFloating();
 		map.addControl(mapfloating);
 	}
-
-	if (!isIframe && !checkMT()){
+	if(!isIframe && !checkMT()){
 		document.getElementById("header").style.display = "block";
 		document.getElementById("Left").style.display = "block";
-
 		keisokuControl = new webtis.Control.keisoku();
 		map.addControl(keisokuControl);
-
 		printerControl = new webtis.Control.Printer();
 		map.addControl(printerControl);
-
 		overViewControl = new webtis.Control.GisOverviewMap();
 		map.addControl(overViewControl);
 	}
-
-	if (!isIframe && isSakuzu & !checkMT()) {
+	if(!isIframe && isSakuzu & !checkMT()) {
 		sz_buttonControl = new webtis.Control.sz_button();
 		map.addControl(sz_buttonControl);
 	}
-
 	if (hasCloseButton){
 		closeButtonControl = new webtis.Control.CloseButton();
 		map.addControl(closeButtonControl);
 	}
-
 	changeDataSet(dataId);
 	map.addLayer(jihokuLayer);
 	jihokuLayer.setZIndex(500);
-
 	map.addLayer(utmPointLayer);
 	var hasHash = location.hash;
-
 	permalinkControl = new OpenLayers.Control.Permalink({anchor: true});
 	map.addControl(permalinkControl);
-
-	if (!hasHash){
-		if (initCX == 0 && initCY == 0) {
-			setInitialRect();
-		}
+	if(!hasHash){
+		if(initCX == 0 && initCY == 0) {setInitialRect();}
 		else {
-			map.setCenter(new OpenLayers.LonLat(initCX,initCY).transform(projection4326,projection900913), initZoomLv);
+			map.setCenter(new OpenLayers.LonLat(initCX,initCY).transform(
+        projection4326,projection900913), initZoomLv);
 		}
 	}
-
-	gZ18Flag = initZoomLv==18 ? true : false ;
-
-	if (setmarker!=""){
+	gZ18Flag = initZoomLv==18 ? true : false ; /// FIXME
+	if(setmarker!=""){
 		var marker = new OpenLayers.Layer.Markers("Marker");
 		map.addLayer(marker);
-		marker.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(initCX,initCY).transform(projection4326,projection900913)));
+		marker.addMarker(new OpenLayers.Marker(
+      new OpenLayers.LonLat(initCX,initCY).transform(
+        projection4326,projection900913)));
 		flagmarker = 1;
 	}
-
 	document.getElementById('map').oncontextmenu = function(e){
-		e = e?e:window.event;
-		if(e.preventDefault){e.preventDefault();}else{return false;}
+		e = e ? e : window.event;
+		if(e.preventDefault){e.preventDefault();} else {return false;}
 	}
-
 	map.events.register('moveend', map, funcMoveEnd);
 	map.events.register('movestart', map, function(){ clearTimeout(timerID);});
-
 	map.events.register('changelayer', map, function(){ funcCrosshairs(); });
-
 	OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {
 		defaultHandlerOptions: {
-			'single': true,
-			'double': true,
-			'pixelTolerance': 0,
-			'stopSingle': false,
-			'stopDouble': false
+			'single': true, 'double': true, 'pixelTolerance': 0,
+			'stopSingle': false, 'stopDouble': false
 		},
 		handleRightClicks:true,
 		initialize: function(options) {
@@ -673,11 +618,8 @@ function init() {
 		},
 		CLASS_NAME: "OpenLayers.Control.Click"
 	});
-
 	OpenLayers.Control.Keyboard = OpenLayers.Class(OpenLayers.Control, {
-		defaultHandlerOptions: {
-			'keypress': true
-		},
+		defaultHandlerOptions: {'keypress': true},
 		initialize: function(options) {
 			this.handlerOptions = OpenLayers.Util.extend(
 				{}, this.defaultHandlerOptions
@@ -691,15 +633,12 @@ function init() {
 		},
 		CLASS_NAME: "OpenLayers.Control.Keyboard"
 	});
-
 	OpenLayers.Popup.MyPopupClass =
 	OpenLayers.Class(OpenLayers.Popup, {
 		'contentDisplayClass': 'myOwnStyleForPopupContent'
 	});
-
 	mapoClick = new OpenLayers.Control.Click({eventMethods:{
 		'rightclick': onPopup,
-
 		'click': function(e) {
 			if (e.button == 2) {onPopup(e);} else {
 				closePopup();
@@ -707,67 +646,47 @@ function init() {
 				ConfigMenu.close();
 			}
 		},
-		'dblclick': function(e) {
-		},
-		'dblrightclick': function(e) {
-		}
+		'dblclick': function(e) {},
+		'dblrightclick': function(e) {}
 	}});
 	map.addControl(mapoClick);
 	mapoClick.activate();
-
 	var sketchSymbolizers = {
 		"Point": {
-			pointRadius: 4,
-			graphicName: "square",
-			fillColor: "white",
-			fillOpacity: 1,
-			strokeWidth: 1,
-			strokeOpacity: 1,
-			strokeColor: "#333333"
+			pointRadius: 4,	graphicName: "square", fillColor: "white",
+			fillOpacity: 1,	strokeWidth: 1,	strokeOpacity: 1,	strokeColor: "#333333"
 		},
 		"Line": {
-			strokeWidth: 3,
-			strokeOpacity: 1,
-			strokeColor: "#666666",
+			strokeWidth: 3,	strokeOpacity: 1,	strokeColor: "#666666",
 			strokeDashstyle: "dash"
 		},
 		"Polygon": {
-			strokeWidth: 2,
-			strokeOpacity: 1,
-			strokeColor: "#666666",
-			fillColor: "white",
-			fillOpacity: 0.3
+			strokeWidth: 2,	strokeOpacity: 1,	strokeColor: "#666666",
+			fillColor: "white",	fillOpacity: 0.3
 		}
 	};
 	var style = new OpenLayers.Style();
-	style.addRules([
-		new OpenLayers.Rule({symbolizer: sketchSymbolizers})
-	]);
+	style.addRules([new OpenLayers.Rule({symbolizer: sketchSymbolizers})]);
 	var styleMap = new OpenLayers.StyleMap({"default": style});
-
 	measureControls = {
 		line: new OpenLayers.Control.Measure(
 			OpenLayers.Handler.Path, {
-				persist: true,
-				handlerOptions: {
+				persist: true, handlerOptions: {
 					layerOptions: {styleMap: styleMap}
 				}
 			}
 		),
 		polygon: new OpenLayers.Control.Measure(
 			OpenLayers.Handler.Polygon, {
-				persist: true,
-				handlerOptions: {
+				persist: true, handlerOptions: {
 					layerOptions: {styleMap: styleMap}
 				}
 			}
 		)
 	};
-
 	var control;
 	for(var key in measureControls) {
 		control = measureControls[key];
-
 		control.geodesic = true;
 		control.setImmediate(true);
 		control.events.on({
@@ -778,19 +697,16 @@ function init() {
 	}
 	mousecontrol();
 }
-
 function rollOver(obj){
 	obj.style.backgroundColor = "#ffaa99";
 	obj.style.borderTop = "1px solid #ffddcc";
 	obj.style.borderLeft = "1px solid #ffddcc";
 }
-
 function rollOut(obj){
 	obj.style.backgroundColor = "#ffeedd";
 	obj.style.borderTop = "1px solid #ffeeee";
 	obj.style.borderLeft = "1px solid #ffeeee";
 }
-
 function closePopup(){
 	if(popupflag)	{map.removePopup(popup);}
 	closeSubmenu();
@@ -800,41 +716,32 @@ function closePopup(){
 	}
 }
 function prncenter() {
-    var center=map.getCenter();
-    var center2=center.transform(projection900913,projection4326);
-    var lat = center2.lat;
-    var lon = center2.lon;
-    var roundMe=100;
-    if(lon < 0){
-    	var lon2 = -1 * lon;
-    }else{
-    	lon2 = lon;
-    }
-    if(lat < 0){
-    	var lat2 = -1 * lat;
-    }else{
-    	lat2 = lat;
-    }
-
-    if(dmsflag == 1){	
-	    if(lat < 0 && lon < 0){
+  var center = map.getCenter();
+  var center2 = center.transform(projection900913, projection4326);
+  var lat = center2.lat;
+  var lon = center2.lon;
+  var roundMe = 100;
+  if(lon < 0){var lon2 = -1 * lon;} else {lon2 = lon;}
+  if(lat < 0){var lat2 = -1 * lat;} else {lat2 = lat;}
+  if(dmsflag == 1){	
+    if(lat < 0 && lon < 0){
 			document.getElementById('centerform').innerHTML = '<form action="index.html" onsubmit="return moveto()"><font size="2">中心南緯</font> <input type="text" size="2" id="deglat" name="deglat" style="font-weight:500;font-size:15px;width:20px;"><font size="2">度</font><input type="text" size="2" id="minlat" name="minlat" style="font-weight:500;font-size:15px;width:20px;"><font size="2">分</font><input type="text" size="4" id="seclat" name="seclat" style="font-weight:500;font-size:15px;width:45px;"><font size="2">秒　西経</font> <input type="text" size="3" id="deglon" name="deglon" style="font-weight:500;font-size:15px;width:30px;"><font size="2">度</font><input type="text" size="2" id="minlon" name="minlon" style="font-weight:500;font-size:15px;width:20px;"><font size="2">分</font><input type="text" size="4" id="seclon" name="seclon" style="font-weight:500;font-size:15px;width:45px;"><font size="2">秒</font><input type="button" value="移動" onclick="moveto()"><input type="button" value="十進" onclick="ddd()"></form><div id="outText"></div>';
-		}else if(lat < 0 && lon >= 0){
+    }else if(lat < 0 && lon >= 0){
 			document.getElementById('centerform').innerHTML = '<form action="index.html" onsubmit="return moveto()"><font size="2">中心南緯</font> <input type="text" size="2" id="deglat" name="deglat" style="font-weight:500;font-size:15px;width:20px;"><font size="2">度</font><input type="text" size="2" id="minlat" name="minlat" style="font-weight:500;font-size:15px;width:20px;"><font size="2">分</font><input type="text" size="4" id="seclat" name="seclat" style="font-weight:500;font-size:15px;width:45px;"><font size="2">秒　東経</font> <input type="text" size="3" id="deglon" name="deglon" style="font-weight:500;font-size:15px;width:30px;"><font size="2">度</font><input type="text" size="2" id="minlon" name="minlon" style="font-weight:500;font-size:15px;width:20px;"><font size="2">分</font><input type="text" size="4" id="seclon" name="seclon" style="font-weight:500;font-size:15px;width:45px;"><font size="2">秒</font><input type="button" value="移動" onclick="moveto()"><input type="button" value="十進" onclick="ddd()"></form><div id="outText"></div>';
-		}else if(lat >= 0 && lon < 0){
+    }else if(lat >= 0 && lon < 0){
 			document.getElementById('centerform').innerHTML = '<form action="index.html" onsubmit="return moveto()"><font size="2">中心北緯</font> <input type="text" size="2" id="deglat" name="deglat" style="font-weight:500;font-size:15px;width:20px;"><font size="2">度</font><input type="text" size="2" id="minlat" name="minlat" style="font-weight:500;font-size:15px;width:20px;"><font size="2">分</font><input type="text" size="4" id="seclat" name="seclat" style="font-weight:500;font-size:15px;width:45px;"><font size="2">秒　西経</font> <input type="text" size="3" id="deglon" name="deglon" style="font-weight:500;font-size:15px;width:30px;"><font size="2">度</font><input type="text" size="2" id="minlon" name="minlon" style="font-weight:500;font-size:15px;width:20px;"><font size="2">分</font><input type="text" size="4" id="seclon" name="seclon" style="font-weight:500;font-size:15px;width:45px;"><font size="2">秒</font><input type="button" value="移動" onclick="moveto()"><input type="button" value="十進" onclick="ddd()"></form><div id="outText"></div>';
 		}else if(lat >= 0 && lon >= 0){
 			document.getElementById('centerform').innerHTML = '<form action="index.html" onsubmit="return moveto()"><font size="2">中心北緯</font> <input type="text" size="2" id="deglat" name="deglat" style="font-weight:500;font-size:15px;width:20px;"><font size="2">度</font><input type="text" size="2" id="minlat" name="minlat" style="font-weight:500;font-size:15px;width:20px;"><font size="2">分</font><input type="text" size="4" id="seclat" name="seclat" style="font-weight:500;font-size:15px;width:45px;"><font size="2">秒　東経</font> <input type="text" size="3" id="deglon" name="deglon" style="font-weight:500;font-size:15px;width:30px;"><font size="2">度</font><input type="text" size="2" id="minlon" name="minlon" style="font-weight:500;font-size:15px;width:20px;"><font size="2">分</font><input type="text" size="4" id="seclon" name="seclon" style="font-weight:500;font-size:15px;width:45px;"><font size="2">秒</font><input type="button" value="移動" onclick="moveto()"><input type="button" value="十進" onclick="ddd()"></form><div id="outText"></div>';
-		}
-	}
+    }
+  }
 	var temp;
-	var EH=parseInt(lon2, 10);
-	temp = (lon2-EH)*60;
-	var EM= temp>=1 ? parseInt(temp, 10) : 0;
-	var ES=(lon2-EH-(EM/60))*3600  ;
-  var ESS=(Math.round(ES*roundMe)/roundMe);
-  if(ESS==60){ESS=0; EM=EM+1;};
-  if(EM==60){EM=0; EH=EH+1;};
+	var EH = parseInt(lon2, 10);
+	temp = (lon2 - EH) * 60;
+	var EM = temp>=1 ? parseInt(temp, 10) : 0;
+	var ES = (lon2-EH-(EM/60))*3600  ;
+  var ESS = (Math.round(ES*roundMe)/roundMe);
+  if(ESS == 60){ESS = 0; EM = EM + 1;};
+  if(EM == 60){EM = 0; EH = EH + 1;};
   var NH=parseInt(lat2, 10);
   temp = (lat2-NH)*60;
   var NM= temp>=1 ? parseInt(temp, 10) : 0;
@@ -842,15 +749,11 @@ function prncenter() {
   var NSS=(Math.round(NS*roundMe)/roundMe);
   if(NSS==60){NSS=0; NM=NM+1;};
   if(NM==60){NM=0; NH=NH+1;};
-    var zoom = map.getZoom();  //ズームレベルを相対から絶対に変換
-
-    //経緯度は小数点以下6桁に丸める
+    var zoom = map.getZoom();
     lat = lat * 1000000;
     lat = Math.round(lat) / 1000000;
     lon = lon * 1000000;
     lon = Math.round(lon) / 1000000;
-
-  //中心経緯度表示
     var html= lat + "," + lon;
     if(document.getElementById('center')){
       document.getElementById('center').value = html;
@@ -862,124 +765,100 @@ function prncenter() {
     document.getElementById('minlat').value = NM;
     document.getElementById('seclat').value = NSS;
   }
-
   if (csModule != null) {
     csModule.prncenter();
   }
 }
-/*ドラッグ、パン、ズームが完了した直後の処理*/
 function funcMoveEnd() {
-  //パンくずリスト作成用のタイマー設定
   timerID = setTimeout("prncenter()", 1000);
-
-  // 右クリックメニューを閉じる
   closePopup();
-
-  // 印刷プレビュー地図の場合、親に現座標を送る
   if (isReceivePrintData) {
     var mapinfo = sakuzuModule.createParameter();
     var lat = String(Math.floor(mapinfo.lat * 1000000) / 1000000);
     var lon = String(Math.floor(mapinfo.lon * 1000000) / 1000000);
     var zoom = mapinfo.zoomLevel > 0 ? mapinfo.zoomLevel - 1 : 0;
-
     var senddata = {
-      "mode": "lonlat_toParent",
-      "lon": lon,
-      "lat": lat,
-      "z": zoom
-    }
+      "mode": "lonlat_toParent", "lon": lon, "lat": lat, "z": zoom
+    };
     var jsondata = JSON.stringify(senddata);
-
     parent.postMessage(jsondata, "*");
   }
 }
-
-/*Objectの中身を文字列で取得(メタデータを扱うため)*/
 function showObject(elm,type){
   var str = '「' + typeof elm + "」の中身";
   var cnt = 0;
   for(i in elm){
-  if(type == 'html'){
-  str += '<br />\n' + "[" + cnt + "] " + i.bold() + ' = ' + elm[i];
-  }
-  else {
-  str += '\n' + "[" + cnt + "] " + i + ' = ' + elm[i];
-  }
-  cnt++;
-  status = cnt;
+    if(type == 'html'){
+      str += '<br />\n' + "[" + cnt + "] " + i.bold() + ' = ' + elm[i];
+    } else {
+      str += '\n' + "[" + cnt + "] " + i + ' = ' + elm[i];
+    }
+    cnt++;
+    status = cnt;
   }
   return str;
 }
-
-/*地図表示領域の画面の大きさに合わせて変更する*/
 function arrange() {
-
-  //ウィンドウサイズを取得
-    var obj = window;
-    if( window.opera ) {  //Operaの場合
-        var w = obj.innerWidth;
-        var h = obj.innerHeight;
-    } else if( document.all ){  //IEの場合
-        var w = obj.document.documentElement.clientWidth;
-        var h = obj.document.documentElement.clientHeight;
-    } else if( document.getElementById ){    //IE以外の場合
-        var w = obj.innerWidth;
-        var h = obj.innerHeight;
-    }
-    //カウンターが偶数なら初期レイアウト、奇数ならfullscreenレイアウト
+  var obj = window;
+  if( window.opera ) {
+    var w = obj.innerWidth;
+    var h = obj.innerHeight;
+  } else if( document.all ){
+    var w = obj.document.documentElement.clientWidth;
+    var h = obj.document.documentElement.clientHeight;
+  } else if( document.getElementById ){
+    var w = obj.innerWidth;
+    var h = obj.innerHeight;
+  }
   if (!fullscreenMode) {
-      //ヘッダー・左ペイン・地図表示部・縮小ボタンの初期レイアウト
-      var header_style = document.getElementById("header").style;
-      header_style.position = "absolute";
-      header_style.left = 0 + "px";
-      header_style.top = 0 + "px";
-      header_style.width = w + "px";
-      header_style.height = 55 + "px";
-      header_style.overflow = "hidden";
-      var left_style = document.getElementById("Left").style;
-      left_style.position = "absolute";
-      left_style.left = 0 + "px";
-      left_style.top = 57 + "px";
-      left_style.width = 300 + "px";
-      left_style.height = (h - 57) + "px";
-      left_style.overflow = "hidden";
-      var map_style = document.getElementById("map").style;
-      map_style.position = "absolute";
-
-      map_style.left = 302 + "px";
-      map_style.top = 57 + "px";
-      map_style.width = ( w - 302 ) + "px";
-      map_style.height = ( h - 57 ) + "px";
-      map_style.overflow = "hidden";
-      map_style.border = "none";  //地図の枠線(印刷プレビュー用)を非表示
-    }
-    else{
-      header_style = document.getElementById("header").style;
-      header_style.position = "absolute";
-      header_style.left = 0 + "px";
-      header_style.top = 0 + "px";
-      header_style.width = 0 + "px";
-      header_style.height = 0 + "px";
-      header_style.overflow = "hidden";
-      left_style = document.getElementById("Left").style;
-      left_style.position = "absolute";
-      left_style.left = 0 + "px";
-      left_style.top = 0 + "px";
-      left_style.width = 0 + "px";
-      left_style.height = 0 + "px";
-      left_style.overflow = "hidden";
-      map_style = document.getElementById("map").style;
-      map_style.position = "absolute";
-      map_style.left = 0 + "px";
-      map_style.top = 0 + "px";
-      map_style.width = w + "px";
-      map_style.height = h + "px";
-      map_style.overflow = "hidden";
-      map_style.border = "none";
-    }
+    var header_style = document.getElementById("header").style;
+    header_style.position = "absolute";
+    header_style.left = 0 + "px";
+    header_style.top = 0 + "px";
+    header_style.width = w + "px";
+    header_style.height = 55 + "px";
+    header_style.overflow = "hidden";
+    var left_style = document.getElementById("Left").style;
+    left_style.position = "absolute";
+    left_style.left = 0 + "px";
+    left_style.top = 57 + "px";
+    left_style.width = 300 + "px";
+    left_style.height = (h - 57) + "px";
+    left_style.overflow = "hidden";
+    var map_style = document.getElementById("map").style;
+    map_style.position = "absolute";
+    map_style.left = 302 + "px";
+    map_style.top = 57 + "px";
+    map_style.width = ( w - 302 ) + "px";
+    map_style.height = ( h - 57 ) + "px";
+    map_style.overflow = "hidden";
+    map_style.border = "none";
+  } else {
+    header_style = document.getElementById("header").style;
+    header_style.position = "absolute";
+    header_style.left = 0 + "px";
+    header_style.top = 0 + "px";
+    header_style.width = 0 + "px";
+    header_style.height = 0 + "px";
+    header_style.overflow = "hidden";
+    left_style = document.getElementById("Left").style;
+    left_style.position = "absolute";
+    left_style.left = 0 + "px";
+    left_style.top = 0 + "px";
+    left_style.width = 0 + "px";
+    left_style.height = 0 + "px";
+    left_style.overflow = "hidden";
+    map_style = document.getElementById("map").style;
+    map_style.position = "absolute";
+    map_style.left = 0 + "px";
+    map_style.top = 0 + "px";
+    map_style.width = w + "px";
+    map_style.height = h + "px";
+    map_style.overflow = "hidden";
+    map_style.border = "none";
+  }
   closePopup();
 }
-
 function arrange2() {
   if( sakuzuModule.CurrentMode != "none"){
     return false;
@@ -1017,7 +896,6 @@ function arrange2() {
   map_style.height = ( h - 62 ) + "px";
   map_style.overflow = "hidden";
   map.removeControl(shrinkcontrol);
-
   printsizeselectclose();
   clickmapclosefloating();
   closePopup();
@@ -1028,11 +906,9 @@ function arrange2() {
   sakuzuModule.updateDrawControls();
   fullscreenMode = false;
 }
-
 function styleSetting() {
   if (printMapFlg == 0){arrange();} else {arrange_print();}
 }
-
 function fullscreen(){
   if( sakuzuModule.CurrentMode != "none"){return false;}
   var obj = window;
@@ -1046,7 +922,6 @@ function fullscreen(){
     var w = obj.innerWidth;
     var h = obj.innerHeight;
   }
-
   header_style = document.getElementById("header").style;
   header_style.position = "absolute";
   header_style.left = 0 + "px";
@@ -1068,13 +943,11 @@ function fullscreen(){
   map_style.width = w + "px";
   map_style.height = h + "px";
   map_style.overflow = "hidden";
-
   fullscreenMode = true;
   if (!isIframe && !checkMT()){
     shrinkcontrol = new webtis.Control.ShrinkMap();
     map.addControl(shrinkcontrol);
   }
-
   printsizeselectclose();
   $("#config_cs").animate({height: "hide", opacity: "toggle"},500);
   clickmapclosefloating();
@@ -1191,23 +1064,21 @@ function mousecontrol() {
     var obj = window;
     if( window.opera ) {
         var w = obj.innerWidth;
-      } else if( document.all ){  //IEの場合
+      } else if( document.all ){
         var w = obj.document.documentElement.clientWidth;
-      } else if( document.getElementById ){    //IE以外の場合
+      } else if( document.getElementById ){
         var w = obj.innerWidth;
       }
-
-      //ズームバー＆背景地図選択ボタンの位置を設定
       button_x1 = w - 7 - 74;
       button_x2 = w - 7;
-      if(!fullscreenMode){  //標準表示
+      if(!fullscreenMode){
         zoomber_x1 = 319;
         zoomber_x2 = 335;
         zoomber_y1 = 129;
         zoomber_y2 = 361;
         button_y1 = 67;
         button_y2 = 67 + 32;
-      }else{      //全画面表示
+      }else{
         zoomber_x1 = 19;
         zoomber_x2 = 35;
         zoomber_y1 = 79;
@@ -1215,18 +1086,13 @@ function mousecontrol() {
         button_y1 = 10;
         button_y2 = 10 + 32;
       }
-
-      //背景地図選択ウィンドウの表示・非表示
-      //2重に表示しないように場合分け(表示：mapSelectFlg=1、非表示：mapSelectFlg=0)
       if( mouseX >= button_x1 && mouseX <= button_x2 && mouseY >= button_y1 && mouseY <= button_y2 && mapSelectFlg == 0 && offonflg == 0)
       {
         var top = button_y2;
         clickmapfloating(top);
         offonflg = 1;
-        printsizeselectclose();    //プリントサイズ選択
-      }
-      // -- merge1227
-      else if(
+        printsizeselectclose();
+      } else if(
           ( mouseX >= button_x1 && mouseX <= button_x2 && mouseY >= button_y1 && mouseY <= button_y2 && mapSelectFlg == 1)
           ||
 
@@ -1249,7 +1115,6 @@ function mousecontrol() {
   });
 }
 
-/* マウス位置のインスタンス取得(パンズームバー横の縮尺表示をするため) */
 function getMousePosition(e) {
   var obj = new Object();
   if(document.all) {
@@ -1262,52 +1127,39 @@ function getMousePosition(e) {
   }
   return obj;
 }
-
-/*中央の十字を書く関数（初期起動時と、ウインドウサイズが変更されると呼び出す。）*/
 function funcCrosshairs()  {
-  if(map)  {    //初期起動時のエラー回避処理
-    if (centercross) {  //チェックが入っている場合
-      removeScaleCross();  // いったん十字コントロール削除
-      createScaleCross(); // 十字コントロールの作成
-    }
-    else{
+  if(map)  {
+    if (centercross) {
+      removeScaleCross(); createScaleCross();
+    } else {
       return false;
     }
   }
 }
 
-/*中央の十字の表示・非表示を切り替える関数(チェックボックスで呼び出し)*/
 function funcCrosshairs2() {
-  if (!document.getElementById('centercross').checked) {  //チェックが入っていない場合
-    removeScaleCross();  // 十字コントロール削除
-  }
-  else{
-    createScaleCross();  // 十字コントロールの作成
+  if (!document.getElementById('centercross').checked) {
+    removeScaleCross();
+  } else {
+    createScaleCross();
   }
 }
 
-/*指定座標に×の表示を行う関数*/
 function funcClickMark(lon, lat) {
-
-  //2回目以降は前のマーカーを消す
   if(clickmarkflg == 1){
     map.removeLayer(map.getLayersByName('Markers')[0]);
   }
-
   mapMeta = webtisMap.getCurrentMetaData();
   source = showObject(mapMeta);
   pos = source.indexOf("dataId");
   if(pos) {
-
     var markers = new OpenLayers.Layer.Markers( "Markers" );
     map.addLayer(markers);
     var size = new OpenLayers.Size(12,12);
     var offset = new OpenLayers.Pixel(-(size.w/2), -(size.h/2));
-
     dataidst = pos + 9;
     dataiden = dataidst + 5;
     str = source.substring(dataidst,dataiden);
-
     if (str == "NLII1" || str == "NLII2" || str == "NLII3" || str == "NLII4" || str == "DJBMO" || str == "TOHO2"){
       var icon = new OpenLayers.Icon('http://cyberjapandata.gsi.go.jp/portal/site/mapuse4/image/clickmarkWH.png',size,offset);
     }
@@ -1318,19 +1170,15 @@ function funcClickMark(lon, lat) {
     markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(lon,lat),icon));
     //markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(0,0),icon.clone()));
   }
-  clickmarkflg = 1;  //表示フラグON
+  clickmarkflg = 1;
 }
-
-/*住所検索で駅が検索されたときに駅にチェックがついたままにする*/
 function keepseries(form) {
   if(form.series[1].checked){
-    document.getElementById('seriestext').value = form.series[1].value;  //とりあえずテキストフォームにSTATIONと書いておく(あとでphpからとりにいく)
+    document.getElementById('seriestext').value = form.series[1].value;
   }else{
     document.getElementById('seriestext').value = null;
   }
 }
-
-/*phpが読み込まれてからsakuzu.jsの読み込むをするため、sakuzu.jsの読み込みを遅延させるための関数(これがないと、作図が阻害されてIEでエラーが出る？？)*/
 function sleep(time){
   var d1 = new Date().getTime();
   var d2 = new Date().getTime();
@@ -1339,8 +1187,6 @@ function sleep(time){
   }
   return;
 }
-
-/*計測して、計測結果を書き出す関数*/
 function handleMeasurements(event) {
   var geometry = event.geometry;
   var units = event.units;
@@ -1355,8 +1201,6 @@ function handleMeasurements(event) {
   }
   element.innerHTML = out;
 }
-
-/*計測機能の使用をONにする関数*/
 function toggleControl(element) {
   if(!window.mapfloat3)  {
     for(key in measureControls) {
@@ -1369,58 +1213,45 @@ function toggleControl(element) {
     }
   }
 }
-
-/*計測機能のウインドウを表示する関数*/
 function openMeasure(element)  {
   if (!document.getElementById("img_measure").disabled){
     for(key in measureControls) {
       var control = measureControls[key];
       if(key == "line")  {
-        control.activate();    //初期状態は距離計測に設定
+        control.activate();
       }else{
         control.deactivate();
       }
     }
-    document.getElementById('showimage').style.display="block";    //表示する
-
+    document.getElementById('showimage').style.display="block";
     mapoClick.deactivate();
     printsizeselectclose();
     clickmapclosefloating();
     closePopup();
-
     changeDisable("img_measure", true);
     changeDisable("img_allow_open", true);
     changeDisable("img_printer", true);
     changeDisable("img_sakuzu", true);
-
     document.onmousemove=null;
   }
 }
-
-/*計測機能のウインドウを非表示にする関数*/
 function closeMeasure(element)  {
   toggleControl(element);
-  document.getElementById('lineToggle').checked = true;      //次回開くときに備えて、ラジオボタンを距離計測に設定しておく
-  document.getElementById('output').innerHTML = "";        //計測結果のブロックを空にする
-  document.getElementById('showimage').style.display="none";    //ウインドウを非表示にする
-
+  document.getElementById('lineToggle').checked = true;
+  document.getElementById('output').innerHTML = "";
+  document.getElementById('showimage').style.display="none";
   mapoClick.activate();
-
   changeDisable("img_measure", false);
   changeDisable("img_allow_open", false);
   changeDisable("img_printer", false);
   changeDisable("img_sakuzu", false);
-
   mousecontrol();
 }
-
-/*中心位置座標を度分秒表示に切り替える*/
 function ddmmss(){
   var center=map.getCenter();
     var center2=center.transform(projection900913,projection4326);
     var lat = center2.lat;
     var lon = center2.lon;
-    //負の値になったときは南緯・西経に切り替える
     document.getElementById('centerform').innerHTML = "";
     if(lat < 0 && lon < 0){
     document.getElementById('centerform').innerHTML = '<form action="index.html" onsubmit="return moveto()"><font size="2">中心南緯</font> <input type="text" size="2" id="deglat" name="deglat" style="font-weight:500;font-size:15px;width:20px;"><font size="2">度</font><input type="text" size="2" id="minlat" name="minlat" style="font-weight:500;font-size:15px;width:20px;"><font size="2">分</font><input type="text" size="4" id="seclat" name="seclat" style="font-weight:500;font-size:15px;width:45px;"><font size="2">秒　西経</font> <input type="text" size="3" id="deglon" name="deglon" style="font-weight:500;font-size:15px;width:30px;"><font size="2">度</font><input type="text" size="2" id="minlon" name="minlon" style="font-weight:500;font-size:15px;width:20px;"><font size="2">分</font><input type="text" size="4" id="seclon" name="seclon" style="font-weight:500;font-size:15px;width:45px;"><font size="2">秒</font><input type="button" value="移動" onclick="moveto()"><input type="button" value="十進" onclick="ddd()"></form><div id="outText"></div>';
@@ -1431,20 +1262,16 @@ function ddmmss(){
   }else if(lat >= 0 && lon >= 0){
     document.getElementById('centerform').innerHTML = '<form action="index.html" onsubmit="return moveto()"><font size="2">中心北緯</font> <input type="text" size="2" id="deglat" name="deglat" style="font-weight:500;font-size:15px;width:20px;"><font size="2">度</font><input type="text" size="2" id="minlat" name="minlat" style="font-weight:500;font-size:15px;width:20px;"><font size="2">分</font><input type="text" size="4" id="seclat" name="seclat" style="font-weight:500;font-size:15px;width:45px;"><font size="2">秒　東経</font> <input type="text" size="3" id="deglon" name="deglon" style="font-weight:500;font-size:15px;width:30px;"><font size="2">度</font><input type="text" size="2" id="minlon" name="minlon" style="font-weight:500;font-size:15px;width:20px;"><font size="2">分</font><input type="text" size="4" id="seclon" name="seclon" style="font-weight:500;font-size:15px;width:45px;"><font size="2">秒</font><input type="button" value="移動" onclick="moveto()"><input type="button" value="十進" onclick="ddd()"></form><div id="outText"></div>';
   };
-  dmsflag = 1  //六十進数表示ON
+  dmsflag = 1
   prncenter();
 }
-
-/*中心位置座標を十進表示に切り替える*/
 function ddd(){
   document.getElementById('centerform').innerHTML = "";
   document.getElementById('centerform').innerHTML = '<form action="index.html" onsubmit="return moveto()"><font size="3">中心緯度経度：</font> <input type="text" id="center" name="center" size="21" style="padding-left:5px;font-weight:500;font-size:15px;border:2px #6495ED solid;width:190px;"> <input type="button" value="移動" onclick="moveto()"><input type="button" value="度分秒" onclick="ddmmss()"></form><div id="outText"></div>';
-  dmsflag = 0;  //六十進数表示OFF
-
+  dmsflag = 0;
   prncenter();
 }
 
-// ポップアップ表示モードの切り替え
 function changeMode(){
   if (document.getElementById("disppopup").checked){
     if(dispFlg){
@@ -1472,7 +1299,6 @@ function changeDisable(id, value){
   if (element) element.disabled = value;
 }
 
-// モバイル・タブレット版チェック
 function checkMT() {
   if (isNoMT) {
     return false;
@@ -1481,14 +1307,10 @@ function checkMT() {
 }
 //-->
 </script>
-    <script type="text/javascript"><!--計測結果を表示させるフローティングウインドウのJavaScript-->
-<!--
+<script type="text/javascript"><!--
 var ns4=document.layers;
 var ie4=document.all;
 var ns6=document.getElementById&&!document.all;
-
-//drag drop function for NS 4////
-/////////////////////////////////
 
 var dragswitch=0;
 var nsx;
@@ -1522,8 +1344,6 @@ function stopns(){
   temp.releaseEvents(Event.MOUSEMOVE);
 }
 
-//drag drop function for ie4+ and NS6////
-/////////////////////////////////
 function drag_drop(e){
   if (ie4&&dragapproved){
     crossobj.style.left=tempx+event.clientX-offsetx;
@@ -1556,11 +1376,7 @@ function initializedrag(e){
     document.onmousemove=drag_drop;
   }
 }
-
 document.onmouseup=new Function("dragapproved=false");
-
-////drag drop functions end here//////
-
 function hidebox(){
   crossobj=ns6? document.getElementById("showimage") : document.all.showimage;
   if (ie4||ns6)
@@ -1569,36 +1385,25 @@ function hidebox(){
     document.showimage.visibility="hide";
 }
 
-// 作図パレットのドラッグ制御(初期化)【Ver4.0】
 function initializedragS(e){
   crossobj = document.getElementById("sakuzuPalette");
-
   tempx=parseInt(crossobj.style.left, 10);
   tempy=parseInt(crossobj.style.top, 10);
-
   offsetx=e.clientX-tempx;
   offsety=e.clientY-tempy;
-
   document.onmousemove=drag_dropP;
 }
-// 作図パレットのドラッグ制御(初期化) ここまで
 
-// 作図パネルのドラッグ制御(初期化)【Ver4.0】
 function initializedragP(e){
   crossobj=document.getElementById("sakuzuPanel");
-
   tempx=parseInt(crossobj.style.left, 10);
   tempy=parseInt(crossobj.style.top, 10);
-
   offsetx=e.clientX-tempx;
   offsety=e.clientY-tempy;
-
   document.onmousemove=drag_dropP;
   return false;
 }
-//作図パレットのドラッグ制御(初期化) ここまで
 
-//フローティングウィンドウのドラッグ制御
 function drag_dropP(e){
   var x = ie4? event.clientX : e.clientX;
   var y = ie4? event.clientY : e.clientY;
@@ -1607,42 +1412,34 @@ function drag_dropP(e){
   return false;
 }
 
-//フローティングウィンドウのドラッグ制御解除
 function terminatedrag(e){
   document.onmousemove=null;
 }
 function getLonLatValue(lonlat){
-
   var result = {
     EEE: "",
     NNN: "",
     lon: 0,
     lat: 0
   };
-
-  //m単位を経緯度単位に変換
   lonlat2 = new OpenLayers.LonLat(lonlat.lon,lonlat.lat).transform(projection900913,projection4326);
-
   var lon4 = lonlat2.lon;
   var lat4 = lonlat2.lat;
+  if(lon4 < 0){
+    var lon5 = -1 * lon4;
+    var keido = "西経";
+  }else{
+    lon5 = lon4;
+    keido = "東経"
+  }
+  if(lat4 < 0){
+    var lat5 = -1 * lat4;
+    var ido = "南緯";
+  }else{
+    lat5 = lat4;
+    ido = "北緯";
+  }
 
-  //六十進数表示のために経緯度の絶対値を取る
-    if(lon4 < 0){
-      var lon5 = -1 * lon4;
-      var keido = "西経";
-    }else{
-      lon5 = lon4;
-      keido = "東経"
-    }
-    if(lat4 < 0){
-      var lat5 = -1 * lat4;
-      var ido = "南緯";
-    }else{
-      lat5 = lat4;
-      ido = "北緯";
-    }
-
-  //経緯度座標(10進数)を度分秒に変換
   var roundMe=100;
   EH=parseInt(lon5, 10);
   EM=parseInt((lon5-EH)*60, 10);
@@ -1658,55 +1455,39 @@ function getLonLatValue(lonlat){
   if(NSS==60){NSS=0; NM=NM+1;};
   if(NM==60){NM=0; NH=NH+1;};
   NNN=(NH+'度'+NM+'分'+NSS+'秒');
-
-  //経緯度座標(10進数)を小数点以下6桁に丸める
   lon4 = lon4 * 1000000;
   lon4 = parseInt(lon4, 10);
   lon4 = lon4 / 1000000;
   lat4 = lat4 * 1000000;
   lat4 = parseInt(lat4, 10);
   lat4 = lat4 / 1000000;
-
   getAltitude(lon4,lat4);
-
   result.EEE = EEE;
   result.NNN = NNN;
   result.lonlat = lat4 + "," + lon4;
   result.lon = lon4;
   result.lat = lat4;
-
   return result;
 }
 
 function getAltitude(px,py)  {
-  //PHPに渡すURLを生成
   var urlstr = "http://cyberjapandata.gsi.go.jp/cgi-bin/getelevation.php?lon=" + px + "&lat=" + py;
-
-  //jQueryを経由して、JSONPを使用
   $.ajax({
-    dataType: "jsonp",    //ここは固定文字列
-    url: urlstr,      // データを送ってくるPHPスクリプトを指定する。
-
-    // callback関数は、jQueryが自動的に生成してくれますので記述不要
-    success: function (data) {    //PHPの戻り値はJSONP形式。「data」にはJSON形式の文字列が入っています。
-      var outPutHeight = data.elevation + "m（" + data.hsrc + "）";      //結果出力文字列
+    dataType: "jsonp", url: urlstr,
+    success: function (data) {
+      var outPutHeight = data.elevation + "m（" + data.hsrc + "）";
       if (document.getElementById("altitudeResult")){
-        document.getElementById("altitudeResult").innerHTML=outPutHeight;    //結果を出力する
+        document.getElementById("altitudeResult").innerHTML=outPutHeight;
       }
     }
   });
 }
-
-/* 十字コントロール削除 */
 function removeScaleCross(){
   if (crosshairs) {
     map.removeControl(crosshairs);
   }
   crosshairs = null;
 }
-
-/* 十字コントロールの作成
-   中央十字の色を写真データのとき白にする */
 function createScaleCross() {
   mapMeta = webtisMap.getCurrentMetaData();
   source = showObject(mapMeta);
@@ -1722,12 +1503,9 @@ function createScaleCross() {
       crosshairs = new OpenLayers.Control.CenterCross({
         isWhite: isWhite,
         defaultHandlerOptions: {
-              'single': true,
-              'double': false,
-              'pixelTolerance': 0,
-              'stopSingle': false,
-              'stopDouble': false
-          }
+          'single': true, 'double': false, 'pixelTolerance': 0,
+          'stopSingle': false, 'stopDouble': false
+        }
       });
       map.addControl(crosshairs);
       crosshairs.activate();
@@ -1735,22 +1513,20 @@ function createScaleCross() {
       OpenLayers.Event.observe(crosshairs.horizontal, "mousedown",
         OpenLayers.Function.bindAsEventListener(
           function(e) {
-            // 右クリック
             if(!OpenLayers.Event.isLeftClick(e)){
               e.xy = new OpenLayers.Pixel(e.clientX - this.map.div.offsetLeft,
                             e.clientY - this.map.div.offsetTop);
-              onPopup(e);  // ポップアップ表示
+              onPopup(e);
             }
           }, this));
 
       OpenLayers.Event.observe(crosshairs.vertical, "mousedown",
         OpenLayers.Function.bindAsEventListener(
           function(e) {
-            // 右クリック
             if(!OpenLayers.Event.isLeftClick(e)){
               e.xy = new OpenLayers.Pixel(e.clientX - this.map.div.offsetLeft,
                             e.clientY - this.map.div.offsetTop);
-              onPopup(e);  // ポップアップ表示
+              onPopup(e);
             }
           }, this));
     }
@@ -1762,32 +1538,22 @@ function createScaleCross() {
 }
 
 onPopup = function(e) {
-  var lonlat = map.getLonLatFromViewPortPx(e.xy);      //クリック位置がメルカトル座標で取得される
+  var lonlat = map.getLonLatFromViewPortPx(e.xy);
   var lon1 = lonlat.lon;
   var lat1 = lonlat.lat;
-
   result = getLonLatValue(lonlat);
-
-  //図葉名を取得
   var zumei = check_zuyou_list(result.lon, result.lat);
   var zlist="";
-  for(var key in zumei)  {  //図葉の数だけループさせる
+  for(var key in zumei)  {
     zlist = zlist + zumei[key][0] + " , ";
   }
   zlist = zlist.substring(0,zlist.length-2);
-  // 右クリックメニュー＆フローティングウィンドウが開いていれば、閉じる
-  closePopup();        //右クリックメニュー(×マーク＆サブメニュー)
-  clickmapclosefloating();  //背景地図切り替えフローティング画面
-  printsizeselectclose();    //プリントサイズ選択
-
-  // ×印を表示
+  closePopup();
+  clickmapclosefloating();
+  printsizeselectclose();
   funcClickMark(lon1,lat1);
-
-  // 右クリックの位置からサブウィンドウの位置を取得
   var posw = e.clientX + 226;
   var posh = e.clientY + 133;
-
-  // 右クリックメニューのスタイル
   var stylesheet = "";
   stylesheet += "padding:3px 0px 2px 5px;";
   stylesheet += "border-top:1px solid #ffeeee;";
@@ -1797,14 +1563,10 @@ onPopup = function(e) {
   var liststyle1 = " colspan='2' style='width:280px;background-color:#ffeedd;font-size:13px;" + stylesheet;
   var liststyle2 = " style='width:140px;background-color:#ffeedd;font-size:13px;" + stylesheet;
   var liststyle3 = " style='width:140px;background-color:#ffeedd;font-size:13px;color:#c0c0c0;" + stylesheet;
-
-  // 右クリックメニュー上のマウス操作
   var onmouse = "";
   onmouse += " onMouseOver='window.parent.rollOver(this);' onMouseOut='window.parent.rollOut(this);' ";
   var onmouse1 = "";
   onmouse1 += " onMouseOver='window.parent.rollOver(this);window.parent.mapLink("+lon1+","+lat1+","+posw+","+posh+");' onMouseOut='window.parent.rollOut(this);window.parent.displayMode(0);'";
-
-  // 右クリックメニュー
   var popupText = "";
   popupText += "<TABLE border=1 cellspacing=0 cellpadding=3 valign='center'>";
   popupText += "<TR><TD " + liststyle1 + ">";
@@ -1817,32 +1579,22 @@ onPopup = function(e) {
   popupText += "2万5千分1地形図名: " + zlist;
   popupText += "</TD></TR>";
   popupText += "</table>";
-
-  // クリップボード出力
   popupText += "<div id='popup_clipboard' style='font-size:13px;'>";
   popupText += "緯度経度をクリップボードにコピー";
   popupText += "</div>";
-
   popupText += "<TABLE border=1 cellspacing=0 cellpadding=3 valign='center'>";
-
-  // 地理院地図３Dへのリンク
   popupText += "<TR><TD colspan='2' " + liststyle1 + ">";
-
   popupText += "   <a "
-
     + " onclick='open3d("+result.lon
-        +  ","
-        +  result.lat+","
-        +  map.getZoom()
-        +  ");window.parent.closePopup();;'>"
-        +  '<span style="cursor:pointer"><FONT color="#00c"><u>地理院地図3Dで開く</u></FONT></span></a>'
+    +  ","
+    +  result.lat+","
+    +  map.getZoom()
+    +  ");window.parent.closePopup();;'>"
+    +  '<span style="cursor:pointer"><FONT color="#00c"><u>地理院地図3Dで開く</u></FONT></span></a>'
     + "<FONT size='-1'>  (<a target='_blank' href='http://cyberjapandata.gsi.go.jp/3d/index.html' "
     + " >使い方</a>)</FONT></TD></TR>";
-
   popupText += "<TR><TD colspan='2' " + liststyle1 + ">";
   popupText += "他のWeb地図で見る: <a href='#' onclick='openMapLinkPos(LinkKey.Mapion,"+lon1+","+lat1+");return false;'>マピオン</a> / <a href='#' onclick='openMapLinkPos(LinkKey.ItsumoNavi,"+lon1+","+lat1+");return false;'>いつもNAVI</a></TD></TR>";
-
-
   if (20 <= result.lat && result.lat <= 46 && 122 <= result.lon && result.lon <= 154) {
     popupText += "<TR><TD " + liststyle2 + onmouse + " onclick='window.parent.JihokuLineDraw("+lon1+","+lat1+");window.parent.closePopup();'>";
     popupText += "磁北線の表示</TD>";
@@ -1856,7 +1608,6 @@ onPopup = function(e) {
   popupText += "磁北線の非表示</TD></TR>";
 
   var zoom = map.getZoom();
-  //UTMポイントを有効にするかどうかの場合わけ
   if((zoom>=8)&&(result.lon>=120)&&(result.lon<156)&&(result.lat>=0)) {
     popupText += "<TR><TD " + liststyle2 + onmouse + " onclick='window.parent.utmPointDraw("+result.lon+","+result.lat+");'>";
     popupText += "UTMポイントの表示</TD>";
@@ -1869,7 +1620,6 @@ onPopup = function(e) {
     popupText += "UTMポイントの非表示</TD></TR>";
   }
 
-  //UTMグリッドを有効にするかどうかの場合わけ
   if((zoom>=10)&&(result.lon>=120)&&(result.lon<156)&&(result.lat>=0)) {
     popupText += "<TR><TD " + liststyle2 + onmouse + " onclick='window.parent.utmGridDraw();'>";
     popupText += "UTMグリッドの表示</TD>";
@@ -1920,55 +1670,45 @@ onPopup = function(e) {
     popupText += "経緯度グリッドの非表示</TD></TR>";
   }
 
-  // 備考
   popupText += "<TR><TD colspan='2' " + liststyle1 + ">";
   popupText += "  <FONT style='font-size:12px;'><a href='http://portal.cyberjapan.jp/help/howtouse.html#h2-3' style='color:#FF0000' target='_blank'>※注意　右クリックで得られる値等について</a></FONT></TD></TR>";
   popupText += "</TABLE>";
 
-  // 右クリックメニューを右クリック位置の右下に表示する為、表示位置を調整
   var p_lon = lon1 + popupcalc[zoom];
   var p_lat = lat1 - popupcalc[zoom];
-
-  // ズームレベルによってポップアップウィンドウの大きさを変える
   var popupSize;
   popupSize = new OpenLayers.Size(280, 268);
-  // 右クリックメニュー表示
   popup = new OpenLayers.Popup.MyPopupClass(
     "PopupMenu",
     new OpenLayers.LonLat(p_lon,p_lat),
      popupSize,
     popupText,
-    false    //閉じる「×」のボタン
+    false
   );
   popup.border = '1px solid black';
   map.addPopup(popup);
-
-    $("#popup_clipboard").zclip({
-      path: "js/ZeroClipboard.swf",
-      setHandCursor: false,
-      copy: function(){
-        var str = result.lat + "\t" + result.lon;
-          return str;
-      },
-      beforeCopy:function(){
-        $("#popup_clipboard").css('background','yellow');
-      },
-      afterCopy:function(){
-        closePopup();
-      }
-    });
-
+  $("#popup_clipboard").zclip({
+    path: "js/ZeroClipboard.swf",
+    setHandCursor: false,
+    copy: function(){
+      var str = result.lat + "\t" + result.lon;
+      return str;
+    },
+    beforeCopy:function(){
+      $("#popup_clipboard").css('background','yellow');
+    },
+    afterCopy:function(){
+      closePopup();
+    }
+  });
   csModule.getAddress(result.lon, result.lat);
-
   popupflag = 1;
 }
 
-/* 地図の初期表示範囲を日本全土が表示されるよう設定 */
 function setInitialRect() {
   var bounds = new OpenLayers.Bounds(120.0, 19.0, 157.5, 50.0).transform(new OpenLayers.Projection("EPSG:4326"), new OpenLayers.Projection("EPSG:900913"));
   map.zoomToExtent(bounds, true);
 }
-
 //--></script>
 </head>
 <body onresize="styleSetting();funcCrosshairs();">
